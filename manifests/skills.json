@@ -1,0 +1,1448 @@
+{
+  "schema": 1,
+  "snapshot_date": "2026-09-16",
+  "skills": [
+    {
+      "id": "ablation-planner",
+      "name": "ablation-planner",
+      "path": "skills/ablation-planner/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "academic-figure-prompt",
+      "name": "Academic Figure Prompt",
+      "path": "skills/academic-figure-prompt/SKILL.md",
+      "installation": "snapshot",
+      "origin": "local skill",
+      "upstream": null
+    },
+    {
+      "id": "academic-figure-prompt-pastel",
+      "name": "Academic Figure Prompt — Modern ML Airy Style",
+      "path": "skills/academic-figure-prompt-pastel/SKILL.md",
+      "installation": "snapshot",
+      "origin": "local skill",
+      "upstream": null
+    },
+    {
+      "id": "academic-research-suite",
+      "name": "academic-research-suite",
+      "path": "skills/academic-research-suite/SKILL.md",
+      "installation": "snapshot",
+      "origin": "local skill",
+      "upstream": null
+    },
+    {
+      "id": "alphaxiv",
+      "name": "alphaxiv",
+      "path": "skills/alphaxiv/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "analyze-results",
+      "name": "analyze-results",
+      "path": "skills/analyze-results/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "arxiv",
+      "name": "arxiv",
+      "path": "skills/arxiv/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "auto-paper-improvement-loop",
+      "name": "auto-paper-improvement-loop",
+      "path": "skills/auto-paper-improvement-loop/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "auto-review-loop",
+      "name": "auto-review-loop",
+      "path": "skills/auto-review-loop/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "auto-review-loop-llm",
+      "name": "auto-review-loop-llm",
+      "path": "skills/auto-review-loop-llm/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "auto-review-loop-minimax",
+      "name": "auto-review-loop-minimax",
+      "path": "skills/auto-review-loop-minimax/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "brainstorming",
+      "name": "brainstorming",
+      "path": "skills/brainstorming/SKILL.md",
+      "installation": "snapshot",
+      "origin": "local skill",
+      "upstream": null
+    },
+    {
+      "id": "citation-audit",
+      "name": "citation-audit",
+      "path": "skills/citation-audit/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "claims-drafting",
+      "name": "claims-drafting",
+      "path": "skills/claims-drafting/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "comm-lit-review",
+      "name": "comm-lit-review",
+      "path": "skills/comm-lit-review/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "deepxiv",
+      "name": "deepxiv",
+      "path": "skills/deepxiv/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "dse-loop",
+      "name": "dse-loop",
+      "path": "skills/dse-loop/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "embodiment-description",
+      "name": "embodiment-description",
+      "path": "skills/embodiment-description/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "exa-search",
+      "name": "exa-search",
+      "path": "skills/exa-search/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "experiment-audit",
+      "name": "experiment-audit",
+      "path": "skills/experiment-audit/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "experiment-bridge",
+      "name": "experiment-bridge",
+      "path": "skills/experiment-bridge/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "experiment-plan",
+      "name": "experiment-plan",
+      "path": "skills/experiment-plan/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "experiment-queue",
+      "name": "experiment-queue",
+      "path": "skills/experiment-queue/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "feishu-notify",
+      "name": "feishu-notify",
+      "path": "skills/feishu-notify/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "figure-description",
+      "name": "figure-description",
+      "path": "skills/figure-description/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "figure-spec",
+      "name": "figure-spec",
+      "path": "skills/figure-spec/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "formula-derivation",
+      "name": "formula-derivation",
+      "path": "skills/formula-derivation/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "frontend-design",
+      "name": "frontend-design",
+      "path": "skills/frontend-design/SKILL.md",
+      "installation": "snapshot",
+      "origin": "local skill",
+      "upstream": "https://github.com/anthropics/skills"
+    },
+    {
+      "id": "gemini-search",
+      "name": "gemini-search",
+      "path": "skills/gemini-search/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "gpt-image",
+      "name": "gpt-image",
+      "path": "skills/gpt-image/SKILL.md",
+      "installation": "snapshot",
+      "origin": "local skill",
+      "upstream": "https://github.com/wuyoscar/gpt_image_2_skill"
+    },
+    {
+      "id": "grant-proposal",
+      "name": "grant-proposal",
+      "path": "skills/grant-proposal/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "hatch-pet",
+      "name": "hatch-pet",
+      "path": "skills/hatch-pet/SKILL.md",
+      "installation": "snapshot",
+      "origin": "local skill",
+      "upstream": null
+    },
+    {
+      "id": "humanizer",
+      "name": "humanizer",
+      "path": "skills/humanizer/SKILL.md",
+      "installation": "snapshot",
+      "origin": "local skill",
+      "upstream": "https://github.com/blader/humanizer"
+    },
+    {
+      "id": "idea-creator",
+      "name": "idea-creator",
+      "path": "skills/idea-creator/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "idea-discovery",
+      "name": "idea-discovery",
+      "path": "skills/idea-discovery/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "idea-discovery-robot",
+      "name": "idea-discovery-robot",
+      "path": "skills/idea-discovery-robot/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "integrity-forensics",
+      "name": "integrity-forensics",
+      "path": "skills/integrity-forensics/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "interview-cheatsheet",
+      "name": "interview-cheatsheet",
+      "path": "skills/interview-cheatsheet/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "invention-structuring",
+      "name": "invention-structuring",
+      "path": "skills/invention-structuring/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "jurisdiction-format",
+      "name": "jurisdiction-format",
+      "path": "skills/jurisdiction-format/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "kill-argument",
+      "name": "kill-argument",
+      "path": "skills/kill-argument/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "mermaid-diagram",
+      "name": "mermaid-diagram",
+      "path": "skills/mermaid-diagram/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "meta-apply",
+      "name": "meta-apply",
+      "path": "skills/meta-apply/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "meta-optimize",
+      "name": "meta-optimize",
+      "path": "skills/meta-optimize/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "monitor-experiment",
+      "name": "monitor-experiment",
+      "path": "skills/monitor-experiment/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "nature-academic-search",
+      "name": "nature-academic-search",
+      "path": "skills/nature-academic-search/SKILL.md",
+      "installation": "snapshot",
+      "origin": "local skill",
+      "upstream": null
+    },
+    {
+      "id": "nature-citation",
+      "name": "nature-citation",
+      "path": "skills/nature-citation/SKILL.md",
+      "installation": "snapshot",
+      "origin": "local skill",
+      "upstream": null
+    },
+    {
+      "id": "nature-data",
+      "name": "nature-data",
+      "path": "skills/nature-data/SKILL.md",
+      "installation": "snapshot",
+      "origin": "local skill",
+      "upstream": null
+    },
+    {
+      "id": "nature-downloader",
+      "name": "nature-downloader",
+      "path": "skills/nature-downloader/SKILL.md",
+      "installation": "snapshot",
+      "origin": "local skill",
+      "upstream": null
+    },
+    {
+      "id": "nature-experiment-log",
+      "name": "nature-experiment-log",
+      "path": "skills/nature-experiment-log/SKILL.md",
+      "installation": "snapshot",
+      "origin": "local skill",
+      "upstream": null
+    },
+    {
+      "id": "nature-figure",
+      "name": "nature-figure",
+      "path": "skills/nature-figure/SKILL.md",
+      "installation": "snapshot",
+      "origin": "local skill",
+      "upstream": null
+    },
+    {
+      "id": "nature-literature-pipeline",
+      "name": "nature-literature-pipeline",
+      "path": "skills/nature-literature-pipeline/SKILL.md",
+      "installation": "snapshot",
+      "origin": "local skill",
+      "upstream": null
+    },
+    {
+      "id": "nature-paper-to-patent",
+      "name": "nature-paper-to-patent",
+      "path": "skills/nature-paper-to-patent/SKILL.md",
+      "installation": "snapshot",
+      "origin": "local skill",
+      "upstream": null
+    },
+    {
+      "id": "nature-paper2ppt",
+      "name": "nature-paper2ppt",
+      "path": "skills/nature-paper2ppt/SKILL.md",
+      "installation": "snapshot",
+      "origin": "local skill",
+      "upstream": null
+    },
+    {
+      "id": "nature-polishing",
+      "name": "nature-polishing",
+      "path": "skills/nature-polishing/SKILL.md",
+      "installation": "snapshot",
+      "origin": "local skill",
+      "upstream": null
+    },
+    {
+      "id": "nature-proposal-writer",
+      "name": "researchwrite",
+      "path": "skills/nature-proposal-writer/SKILL.md",
+      "installation": "snapshot",
+      "origin": "local skill",
+      "upstream": null
+    },
+    {
+      "id": "nature-reader",
+      "name": "nature-reader",
+      "path": "skills/nature-reader/SKILL.md",
+      "installation": "snapshot",
+      "origin": "local skill",
+      "upstream": null
+    },
+    {
+      "id": "nature-ref-verifier",
+      "name": "nature-ref-verifier",
+      "path": "skills/nature-ref-verifier/SKILL.md",
+      "installation": "snapshot",
+      "origin": "local skill",
+      "upstream": null
+    },
+    {
+      "id": "nature-response",
+      "name": "nature-response",
+      "path": "skills/nature-response/SKILL.md",
+      "installation": "snapshot",
+      "origin": "local skill",
+      "upstream": null
+    },
+    {
+      "id": "nature-reviewer",
+      "name": "nature-reviewer",
+      "path": "skills/nature-reviewer/SKILL.md",
+      "installation": "snapshot",
+      "origin": "local skill",
+      "upstream": null
+    },
+    {
+      "id": "nature-writing",
+      "name": "nature-writing",
+      "path": "skills/nature-writing/SKILL.md",
+      "installation": "snapshot",
+      "origin": "local skill",
+      "upstream": null
+    },
+    {
+      "id": "novelty-check",
+      "name": "novelty-check",
+      "path": "skills/novelty-check/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "openalex",
+      "name": "openalex",
+      "path": "skills/openalex/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "overleaf-sync",
+      "name": "overleaf-sync",
+      "path": "skills/overleaf-sync/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "paper-claim-audit",
+      "name": "paper-claim-audit",
+      "path": "skills/paper-claim-audit/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "paper-compile",
+      "name": "paper-compile",
+      "path": "skills/paper-compile/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "paper-figure",
+      "name": "paper-figure",
+      "path": "skills/paper-figure/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "paper-illustration",
+      "name": "paper-illustration",
+      "path": "skills/paper-illustration/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "paper-illustration-image2",
+      "name": "paper-illustration-image2",
+      "path": "skills/paper-illustration-image2/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "paper-plan",
+      "name": "paper-plan",
+      "path": "skills/paper-plan/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "paper-poster",
+      "name": "paper-poster",
+      "path": "skills/paper-poster/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "paper-poster-html",
+      "name": "paper-poster-html",
+      "path": "skills/paper-poster-html/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "paper-slides",
+      "name": "paper-slides",
+      "path": "skills/paper-slides/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "paper-talk",
+      "name": "paper-talk",
+      "path": "skills/paper-talk/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "paper-write",
+      "name": "paper-write",
+      "path": "skills/paper-write/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "paper-writing",
+      "name": "paper-writing",
+      "path": "skills/paper-writing/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "patent-novelty-check",
+      "name": "patent-novelty-check",
+      "path": "skills/patent-novelty-check/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "patent-pipeline",
+      "name": "patent-pipeline",
+      "path": "skills/patent-pipeline/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "patent-review",
+      "name": "patent-review",
+      "path": "skills/patent-review/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "pixel-art",
+      "name": "pixel-art",
+      "path": "skills/pixel-art/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "prior-art-search",
+      "name": "prior-art-search",
+      "path": "skills/prior-art-search/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "proof-checker",
+      "name": "proof-checker",
+      "path": "skills/proof-checker/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "proof-writer",
+      "name": "proof-writer",
+      "path": "skills/proof-writer/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "qzcli",
+      "name": "qzcli",
+      "path": "skills/qzcli/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "rebuttal",
+      "name": "rebuttal",
+      "path": "skills/rebuttal/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "render-html",
+      "name": "render-html",
+      "path": "skills/render-html/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "research-lit",
+      "name": "research-lit",
+      "path": "skills/research-lit/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "research-paper-writing",
+      "name": "research-paper-writing",
+      "path": "skills/research-paper-writing/SKILL.md",
+      "installation": "snapshot",
+      "origin": "local skill",
+      "upstream": null
+    },
+    {
+      "id": "research-pipeline",
+      "name": "research-pipeline",
+      "path": "skills/research-pipeline/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "research-refine",
+      "name": "research-refine",
+      "path": "skills/research-refine/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "research-refine-pipeline",
+      "name": "research-refine-pipeline",
+      "path": "skills/research-refine-pipeline/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "research-review",
+      "name": "research-review",
+      "path": "skills/research-review/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "research-wiki",
+      "name": "research-wiki",
+      "path": "skills/research-wiki/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "resubmit-pipeline",
+      "name": "resubmit-pipeline",
+      "path": "skills/resubmit-pipeline/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "result-to-claim",
+      "name": "result-to-claim",
+      "path": "skills/result-to-claim/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "run-experiment",
+      "name": "run-experiment",
+      "path": "skills/run-experiment/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "run-starskill",
+      "name": "run-starskill",
+      "path": "skills/run-starskill/SKILL.md",
+      "installation": "snapshot",
+      "origin": "local skill",
+      "upstream": null
+    },
+    {
+      "id": "semantic-scholar",
+      "name": "semantic-scholar",
+      "path": "skills/semantic-scholar/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "serverless-modal",
+      "name": "serverless-modal",
+      "path": "skills/serverless-modal/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "slides-polish",
+      "name": "slides-polish",
+      "path": "skills/slides-polish/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "specification-writing",
+      "name": "specification-writing",
+      "path": "skills/specification-writing/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "subagent-driven-development",
+      "name": "subagent-driven-development",
+      "path": "skills/subagent-driven-development/SKILL.md",
+      "installation": "snapshot",
+      "origin": "local skill",
+      "upstream": null
+    },
+    {
+      "id": "system-profile",
+      "name": "system-profile",
+      "path": "skills/system-profile/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "training-check",
+      "name": "training-check",
+      "path": "skills/training-check/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "vast-gpu",
+      "name": "vast-gpu",
+      "path": "skills/vast-gpu/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "wiki-enrich",
+      "name": "wiki-enrich",
+      "path": "skills/wiki-enrich/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "writing-plans",
+      "name": "writing-plans",
+      "path": "skills/writing-plans/SKILL.md",
+      "installation": "snapshot",
+      "origin": "local skill",
+      "upstream": null
+    },
+    {
+      "id": "writing-systems-papers",
+      "name": "writing-systems-papers",
+      "path": "skills/writing-systems-papers/SKILL.md",
+      "installation": "snapshot",
+      "origin": "ARIS Codex local edition",
+      "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
+    },
+    {
+      "id": "find-skills",
+      "name": "find-skills",
+      "path": "skills/find-skills/SKILL.md",
+      "installation": "snapshot",
+      "origin": "shared agent skills",
+      "upstream": "https://github.com/vercel-labs/skills"
+    },
+    {
+      "id": "math-modeling",
+      "name": "math-modeling",
+      "path": "skills/math-modeling/SKILL.md",
+      "installation": "snapshot",
+      "origin": "shared agent skills",
+      "upstream": "https://github.com/XiaoMaColtAI/math-modeling-skill"
+    },
+    {
+      "id": "math-modeling/tools/docx",
+      "name": "docx",
+      "path": "skills/math-modeling/tools/docx/SKILL.md",
+      "installation": "snapshot",
+      "origin": "shared agent skills",
+      "upstream": "https://github.com/XiaoMaColtAI/math-modeling-skill"
+    },
+    {
+      "id": "math-modeling/tools/paper_search",
+      "name": "paper-search",
+      "path": "skills/math-modeling/tools/paper_search/SKILL.md",
+      "installation": "snapshot",
+      "origin": "shared agent skills",
+      "upstream": "https://github.com/XiaoMaColtAI/math-modeling-skill"
+    },
+    {
+      "id": "math-modeling/tools/pdf",
+      "name": "pdf",
+      "path": "skills/math-modeling/tools/pdf/SKILL.md",
+      "installation": "snapshot",
+      "origin": "shared agent skills",
+      "upstream": "https://github.com/XiaoMaColtAI/math-modeling-skill"
+    },
+    {
+      "id": "math-modeling/tools/xlsx",
+      "name": "xlsx",
+      "path": "skills/math-modeling/tools/xlsx/SKILL.md",
+      "installation": "snapshot",
+      "origin": "shared agent skills",
+      "upstream": "https://github.com/XiaoMaColtAI/math-modeling-skill"
+    },
+    {
+      "id": "plugin-management:plugin-management",
+      "name": "plugin-management",
+      "installation": "plugin",
+      "plugin": "plugin-management",
+      "version": "0.1.0",
+      "path": "skills/plugin-management/SKILL.md"
+    },
+    {
+      "id": "sites:sites-building",
+      "name": "sites-building",
+      "installation": "plugin",
+      "plugin": "sites",
+      "version": "0.1.62",
+      "path": "skills/sites-building/SKILL.md"
+    },
+    {
+      "id": "sites:sites-hosting",
+      "name": "sites-hosting",
+      "installation": "plugin",
+      "plugin": "sites",
+      "version": "0.1.62",
+      "path": "skills/sites-hosting/SKILL.md"
+    },
+    {
+      "id": "sites:sites-preview-troubleshooting",
+      "name": "sites-preview-troubleshooting",
+      "installation": "plugin",
+      "plugin": "sites",
+      "version": "0.1.62",
+      "path": "skills/sites-preview-troubleshooting/SKILL.md"
+    },
+    {
+      "id": "google-drive:google-docs",
+      "name": "google-docs",
+      "installation": "plugin",
+      "plugin": "google-drive",
+      "version": "0.1.16",
+      "path": "skills/google-docs/SKILL.md"
+    },
+    {
+      "id": "google-drive:google-drive",
+      "name": "google-drive",
+      "installation": "plugin",
+      "plugin": "google-drive",
+      "version": "0.1.16",
+      "path": "skills/google-drive/SKILL.md"
+    },
+    {
+      "id": "google-drive:google-drive-comments",
+      "name": "google-drive-comments",
+      "installation": "plugin",
+      "plugin": "google-drive",
+      "version": "0.1.16",
+      "path": "skills/google-drive-comments/SKILL.md"
+    },
+    {
+      "id": "google-drive:google-sheets",
+      "name": "google-sheets",
+      "installation": "plugin",
+      "plugin": "google-drive",
+      "version": "0.1.16",
+      "path": "skills/google-sheets/SKILL.md"
+    },
+    {
+      "id": "google-drive:google-slides",
+      "name": "google-slides",
+      "installation": "plugin",
+      "plugin": "google-drive",
+      "version": "0.1.16",
+      "path": "skills/google-slides/SKILL.md"
+    },
+    {
+      "id": "hugging-face:hf-cli",
+      "name": "hf-cli",
+      "installation": "plugin",
+      "plugin": "hugging-face",
+      "version": "1.0.0",
+      "path": "skills/cli/SKILL.md"
+    },
+    {
+      "id": "hugging-face:huggingface-community-evals",
+      "name": "huggingface-community-evals",
+      "installation": "plugin",
+      "plugin": "hugging-face",
+      "version": "1.0.0",
+      "path": "skills/community-evals/SKILL.md"
+    },
+    {
+      "id": "hugging-face:huggingface-datasets",
+      "name": "huggingface-datasets",
+      "installation": "plugin",
+      "plugin": "hugging-face",
+      "version": "1.0.0",
+      "path": "skills/datasets/SKILL.md"
+    },
+    {
+      "id": "hugging-face:huggingface-gradio",
+      "name": "huggingface-gradio",
+      "installation": "plugin",
+      "plugin": "hugging-face",
+      "version": "1.0.0",
+      "path": "skills/gradio/SKILL.md"
+    },
+    {
+      "id": "hugging-face:huggingface-jobs",
+      "name": "huggingface-jobs",
+      "installation": "plugin",
+      "plugin": "hugging-face",
+      "version": "1.0.0",
+      "path": "skills/jobs/SKILL.md"
+    },
+    {
+      "id": "hugging-face:huggingface-llm-trainer",
+      "name": "huggingface-llm-trainer",
+      "installation": "plugin",
+      "plugin": "hugging-face",
+      "version": "1.0.0",
+      "path": "skills/llm-trainer/SKILL.md"
+    },
+    {
+      "id": "hugging-face:huggingface-paper-publisher",
+      "name": "huggingface-paper-publisher",
+      "installation": "plugin",
+      "plugin": "hugging-face",
+      "version": "1.0.0",
+      "path": "skills/paper-publisher/SKILL.md"
+    },
+    {
+      "id": "hugging-face:huggingface-papers",
+      "name": "huggingface-papers",
+      "installation": "plugin",
+      "plugin": "hugging-face",
+      "version": "1.0.0",
+      "path": "skills/papers/SKILL.md"
+    },
+    {
+      "id": "hugging-face:huggingface-trackio",
+      "name": "huggingface-trackio",
+      "installation": "plugin",
+      "plugin": "hugging-face",
+      "version": "1.0.0",
+      "path": "skills/trackio/SKILL.md"
+    },
+    {
+      "id": "hugging-face:transformers-js",
+      "name": "transformers-js",
+      "installation": "plugin",
+      "plugin": "hugging-face",
+      "version": "1.0.0",
+      "path": "skills/transformers.js/SKILL.md"
+    },
+    {
+      "id": "hugging-face:huggingface-vision-trainer",
+      "name": "huggingface-vision-trainer",
+      "installation": "plugin",
+      "plugin": "hugging-face",
+      "version": "1.0.0",
+      "path": "skills/vision-trainer/SKILL.md"
+    },
+    {
+      "id": "superpowers:brainstorming",
+      "name": "brainstorming",
+      "installation": "plugin",
+      "plugin": "superpowers",
+      "version": "6.3.0",
+      "path": "skills/brainstorming/SKILL.md"
+    },
+    {
+      "id": "superpowers:dispatching-parallel-agents",
+      "name": "dispatching-parallel-agents",
+      "installation": "plugin",
+      "plugin": "superpowers",
+      "version": "6.3.0",
+      "path": "skills/dispatching-parallel-agents/SKILL.md"
+    },
+    {
+      "id": "superpowers:executing-plans",
+      "name": "executing-plans",
+      "installation": "plugin",
+      "plugin": "superpowers",
+      "version": "6.3.0",
+      "path": "skills/executing-plans/SKILL.md"
+    },
+    {
+      "id": "superpowers:finishing-a-development-branch",
+      "name": "finishing-a-development-branch",
+      "installation": "plugin",
+      "plugin": "superpowers",
+      "version": "6.3.0",
+      "path": "skills/finishing-a-development-branch/SKILL.md"
+    },
+    {
+      "id": "superpowers:receiving-code-review",
+      "name": "receiving-code-review",
+      "installation": "plugin",
+      "plugin": "superpowers",
+      "version": "6.3.0",
+      "path": "skills/receiving-code-review/SKILL.md"
+    },
+    {
+      "id": "superpowers:requesting-code-review",
+      "name": "requesting-code-review",
+      "installation": "plugin",
+      "plugin": "superpowers",
+      "version": "6.3.0",
+      "path": "skills/requesting-code-review/SKILL.md"
+    },
+    {
+      "id": "superpowers:subagent-driven-development",
+      "name": "subagent-driven-development",
+      "installation": "plugin",
+      "plugin": "superpowers",
+      "version": "6.3.0",
+      "path": "skills/subagent-driven-development/SKILL.md"
+    },
+    {
+      "id": "superpowers:systematic-debugging",
+      "name": "systematic-debugging",
+      "installation": "plugin",
+      "plugin": "superpowers",
+      "version": "6.3.0",
+      "path": "skills/systematic-debugging/SKILL.md"
+    },
+    {
+      "id": "superpowers:test-driven-development",
+      "name": "test-driven-development",
+      "installation": "plugin",
+      "plugin": "superpowers",
+      "version": "6.3.0",
+      "path": "skills/test-driven-development/SKILL.md"
+    },
+    {
+      "id": "superpowers:using-git-worktrees",
+      "name": "using-git-worktrees",
+      "installation": "plugin",
+      "plugin": "superpowers",
+      "version": "6.3.0",
+      "path": "skills/using-git-worktrees/SKILL.md"
+    },
+    {
+      "id": "superpowers:using-superpowers",
+      "name": "using-superpowers",
+      "installation": "plugin",
+      "plugin": "superpowers",
+      "version": "6.3.0",
+      "path": "skills/using-superpowers/SKILL.md"
+    },
+    {
+      "id": "superpowers:verification-before-completion",
+      "name": "verification-before-completion",
+      "installation": "plugin",
+      "plugin": "superpowers",
+      "version": "6.3.0",
+      "path": "skills/verification-before-completion/SKILL.md"
+    },
+    {
+      "id": "superpowers:writing-plans",
+      "name": "writing-plans",
+      "installation": "plugin",
+      "plugin": "superpowers",
+      "version": "6.3.0",
+      "path": "skills/writing-plans/SKILL.md"
+    },
+    {
+      "id": "superpowers:writing-skills",
+      "name": "writing-skills",
+      "installation": "plugin",
+      "plugin": "superpowers",
+      "version": "6.3.0",
+      "path": "skills/writing-skills/SKILL.md"
+    },
+    {
+      "id": "template-creator:template-creator",
+      "name": "template-creator",
+      "installation": "plugin",
+      "plugin": "template-creator",
+      "version": "26.909.12148",
+      "path": "skills/template-creator/SKILL.md"
+    },
+    {
+      "id": "spreadsheets:excel-live-control",
+      "name": "excel-live-control",
+      "installation": "plugin",
+      "plugin": "spreadsheets",
+      "version": "26.909.12148",
+      "path": "skills/excel-live-control/SKILL.md"
+    },
+    {
+      "id": "spreadsheets:Spreadsheets",
+      "name": "Spreadsheets",
+      "installation": "plugin",
+      "plugin": "spreadsheets",
+      "version": "26.909.12148",
+      "path": "skills/spreadsheets/SKILL.md"
+    },
+    {
+      "id": "pdf:pdf",
+      "name": "pdf",
+      "installation": "plugin",
+      "plugin": "pdf",
+      "version": "26.909.12148",
+      "path": "skills/pdf/SKILL.md"
+    },
+    {
+      "id": "presentations:Presentations",
+      "name": "Presentations",
+      "installation": "plugin",
+      "plugin": "presentations",
+      "version": "26.909.12148",
+      "path": "skills/presentations/SKILL.md"
+    },
+    {
+      "id": "documents:documents",
+      "name": "documents",
+      "installation": "plugin",
+      "plugin": "documents",
+      "version": "26.909.12148",
+      "path": "skills/documents/SKILL.md"
+    },
+    {
+      "id": "visualize:visualize",
+      "name": "visualize",
+      "installation": "plugin",
+      "plugin": "visualize",
+      "version": "1.0.32",
+      "path": "skills/visualize/SKILL.md"
+    },
+    {
+      "id": "system:imagegen",
+      "name": "imagegen",
+      "installation": "builtin",
+      "install": "Provided by Codex; update Codex. For other agents, consult openai/skills and host compatibility."
+    },
+    {
+      "id": "system:openai-docs",
+      "name": "openai-docs",
+      "installation": "builtin",
+      "install": "Provided by Codex; update Codex. For other agents, consult openai/skills and host compatibility."
+    },
+    {
+      "id": "system:plugin-creator",
+      "name": "plugin-creator",
+      "installation": "builtin",
+      "install": "Provided by Codex; update Codex. For other agents, consult openai/skills and host compatibility."
+    },
+    {
+      "id": "system:review-agent",
+      "name": "review-agent",
+      "installation": "builtin",
+      "install": "Provided by Codex; update Codex. For other agents, consult openai/skills and host compatibility."
+    },
+    {
+      "id": "system:skill-creator",
+      "name": "skill-creator",
+      "installation": "builtin",
+      "install": "Provided by Codex; update Codex. For other agents, consult openai/skills and host compatibility."
+    },
+    {
+      "id": "system:skill-installer",
+      "name": "skill-installer",
+      "installation": "builtin",
+      "install": "Provided by Codex; update Codex. For other agents, consult openai/skills and host compatibility."
+    }
+  ],
+  "plugins": [
+    {
+      "name": "plugin-management",
+      "version": "0.1.0",
+      "skills": [
+        "plugin-management"
+      ],
+      "marketplace": "openai-curated-remote",
+      "upstream": "https://github.com/openai/openai/tree/master/chatgpt/oai-maintained-plugins/plugins/plugin-management",
+      "install": "Install or enable this plugin through the target Codex plugin catalog; authenticate its connector if requested. Host-managed runtime plugins require a compatible Codex application."
+    },
+    {
+      "name": "sites",
+      "version": "0.1.62",
+      "skills": [
+        "sites-building",
+        "sites-hosting",
+        "sites-preview-troubleshooting"
+      ],
+      "marketplace": "openai-curated-remote",
+      "upstream": null,
+      "install": "Install or enable this plugin through the target Codex plugin catalog; authenticate its connector if requested. Host-managed runtime plugins require a compatible Codex application."
+    },
+    {
+      "name": "google-drive",
+      "version": "0.1.16",
+      "skills": [
+        "google-docs",
+        "google-drive",
+        "google-drive-comments",
+        "google-sheets",
+        "google-slides"
+      ],
+      "marketplace": "openai-curated-remote",
+      "upstream": "https://github.com/openai/plugins",
+      "install": "Install or enable this plugin through the target Codex plugin catalog; authenticate its connector if requested. Host-managed runtime plugins require a compatible Codex application."
+    },
+    {
+      "name": "hugging-face",
+      "version": "1.0.0",
+      "skills": [
+        "hf-cli",
+        "huggingface-community-evals",
+        "huggingface-datasets",
+        "huggingface-gradio",
+        "huggingface-jobs",
+        "huggingface-llm-trainer",
+        "huggingface-paper-publisher",
+        "huggingface-papers",
+        "huggingface-trackio",
+        "transformers-js",
+        "huggingface-vision-trainer"
+      ],
+      "marketplace": "openai-curated-remote",
+      "upstream": "https://github.com/openai/plugins",
+      "install": "Install or enable this plugin through the target Codex plugin catalog; authenticate its connector if requested. Host-managed runtime plugins require a compatible Codex application."
+    },
+    {
+      "name": "superpowers",
+      "version": "6.3.0",
+      "skills": [
+        "brainstorming",
+        "dispatching-parallel-agents",
+        "executing-plans",
+        "finishing-a-development-branch",
+        "receiving-code-review",
+        "requesting-code-review",
+        "subagent-driven-development",
+        "systematic-debugging",
+        "test-driven-development",
+        "using-git-worktrees",
+        "using-superpowers",
+        "verification-before-completion",
+        "writing-plans",
+        "writing-skills"
+      ],
+      "marketplace": "openai-curated-remote",
+      "upstream": "https://github.com/obra/superpowers",
+      "install": "Install or enable this plugin through the target Codex plugin catalog; authenticate its connector if requested. Host-managed runtime plugins require a compatible Codex application."
+    },
+    {
+      "name": "template-creator",
+      "version": "26.909.12148",
+      "skills": [
+        "template-creator"
+      ],
+      "marketplace": "openai-primary-runtime",
+      "upstream": "https://github.com/openai/openai",
+      "install": "Install or enable this plugin through the target Codex plugin catalog; authenticate its connector if requested. Host-managed runtime plugins require a compatible Codex application."
+    },
+    {
+      "name": "spreadsheets",
+      "version": "26.909.12148",
+      "skills": [
+        "excel-live-control",
+        "Spreadsheets"
+      ],
+      "marketplace": "openai-primary-runtime",
+      "upstream": "https://github.com/openai/openai",
+      "install": "Install or enable this plugin through the target Codex plugin catalog; authenticate its connector if requested. Host-managed runtime plugins require a compatible Codex application."
+    },
+    {
+      "name": "pdf",
+      "version": "26.909.12148",
+      "skills": [
+        "pdf"
+      ],
+      "marketplace": "openai-primary-runtime",
+      "upstream": "https://github.com/openai/openai",
+      "install": "Install or enable this plugin through the target Codex plugin catalog; authenticate its connector if requested. Host-managed runtime plugins require a compatible Codex application."
+    },
+    {
+      "name": "presentations",
+      "version": "26.909.12148",
+      "skills": [
+        "Presentations"
+      ],
+      "marketplace": "openai-primary-runtime",
+      "upstream": "https://github.com/openai/openai",
+      "install": "Install or enable this plugin through the target Codex plugin catalog; authenticate its connector if requested. Host-managed runtime plugins require a compatible Codex application."
+    },
+    {
+      "name": "documents",
+      "version": "26.909.12148",
+      "skills": [
+        "documents"
+      ],
+      "marketplace": "openai-primary-runtime",
+      "upstream": "https://github.com/openai/openai",
+      "install": "Install or enable this plugin through the target Codex plugin catalog; authenticate its connector if requested. Host-managed runtime plugins require a compatible Codex application."
+    },
+    {
+      "name": "visualize",
+      "version": "1.0.32",
+      "skills": [
+        "visualize"
+      ],
+      "marketplace": "openai-bundled",
+      "upstream": null,
+      "install": "Install or enable this plugin through the target Codex plugin catalog; authenticate its connector if requested. Host-managed runtime plugins require a compatible Codex application."
+    }
+  ],
+  "supplemented_files": [
+    "experiment-queue/scripts",
+    "figure-spec/scripts",
+    "paper-poster-html/LICENSES",
+    "paper-poster-html/DESIGN_FINAL.md",
+    "paper-poster-html/scripts",
+    "paper-poster-html/templates",
+    "paper-poster-html/IMPLEMENTATION_CONVENTIONS.md",
+    "paper-poster-html/NOTICE.md"
+  ],
+  "aris_revision": "c5f3d5bfc694a812012729841e9697223e4f2130",
+  "portability_link_repairs": [
+    "skills/research-refine-pipeline/SKILL.md",
+    "skills/auto-review-loop-llm/SKILL.md",
+    "skills/experiment-plan/SKILL.md",
+    "skills/grant-proposal/SKILL.md",
+    "skills/research-refine/SKILL.md",
+    "skills/idea-discovery/SKILL.md",
+    "skills/auto-review-loop/SKILL.md",
+    "skills/paper-plan/SKILL.md",
+    "skills/idea-discovery-robot/SKILL.md",
+    "skills/experiment-bridge/SKILL.md",
+    "skills/auto-review-loop-minimax/SKILL.md"
+  ]
+}
