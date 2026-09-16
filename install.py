@@ -91,7 +91,7 @@ def main():
         print(a['status'] + ': ' + a['path'])
     print('ARIS helper environment: ARIS_REPO=' + shlex.quote(str(runtime)))
     print('Pending: restore plugins / built-in capabilities using docs/PLUGINS.md; configure only needed dependencies in docs/DEPENDENCIES.md.')
-    print('Snapshot definitions: 114. Plugins: 41 definitions in 11 packages. Codex built-ins: 6.')
+    print(f"Snapshot definitions: {report['snapshot_skill_count']}. Plugins: {sum(len(p['skills']) for p in manifest['plugins'])} definitions in {len(manifest['plugins'])} packages. Codex built-ins: {len(report['builtin_skills'])}.")
     return 2 if conflicts else 0
 
 if __name__ == '__main__':

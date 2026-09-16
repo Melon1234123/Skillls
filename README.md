@@ -10,12 +10,12 @@
 
 | 类别 | 数量 | 恢复方式 |
 | --- | ---: | --- |
-| 本地与共享 skills | 114 | 本仓库完整技能目录快照，含脚本、模板、参考资料和共享目录 |
+| 本地与共享 skills | 108 | 本仓库完整技能目录快照，含脚本、模板、参考资料和共享目录 |
 | 插件 skills | 41 / 11 个插件 | 按 [插件恢复清单](docs/PLUGINS.md) 安装或启用；不是复制一个 SKILL.md 就能恢复连接器 |
 | Codex 系统 skills | 6 | 由 Codex 提供；其他 agent 按兼容性处理 |
-| 总计 | **161** | 逐条见 [完整技能清单](docs/SKILLS.md) |
+| 总计 | **155** | 逐条见 [完整技能清单](docs/SKILLS.md) |
 
-数量按 `SKILL.md` 入口统计；数学建模的嵌套工具也分别列出。系统目录中存在但当前会话未公开列出的 `review-agent` 也记录在案。旧版插件缓存、未启用的模板包和推荐但未安装的插件不计入当前清单。
+数量按 `SKILL.md` 入口统计。系统目录中存在但当前会话未公开列出的 `review-agent` 也记录在案。旧版插件缓存、未启用的模板包和推荐但未安装的插件不计入当前清单。
 
 **边界：技能文件安装成功不等于云端工具、登录、GPU、LaTeX 或 API 已可用。** Codex 专属文档/表格/演示文稿/可视化能力由宿主提供，其他 agent 可能没有等价实现。安装器会明确报告待恢复插件；不会伪造“全部能力可用”。
 
@@ -57,7 +57,7 @@ python3 install.py --verify-only
 
 1. 按 [PLUGINS.md](docs/PLUGINS.md) 恢复插件与宿主能力；需要的服务由用户登录。
 2. 按 [DEPENDENCIES.md](docs/DEPENDENCIES.md) 设置运行依赖。ARIS 辅助文件随包安装在技能目录父级的 `skillls-runtime/aris`；使用时把安装器输出的路径设置为 `ARIS_REPO`。
-3. 新开会话或刷新 agent 的 skills 清单，确认真实加载。数学建模工具位于 `math-modeling/tools/`，不递归发现技能的宿主需要通过主技能访问这些工具。
+3. 新开会话或刷新 agent 的 skills 清单，确认真实加载。
 
 安装器默认不覆盖不同内容的目录；`--replace` 会把旧目录移到技能发现目录外的 `skillls-backups`。重复安装相同快照不会产生重复内容。
 
@@ -65,7 +65,7 @@ python3 install.py --verify-only
 
 - [完整安装清单](docs/SKILLS.md)：每个入口、来源和恢复方法。
 - [插件清单](docs/PLUGINS.md)：11 个插件及其 41 个 skills。
-- [依赖说明](docs/DEPENDENCIES.md)：API、MCP、ARIS、StarSkill、模型和系统依赖。
+- [依赖说明](docs/DEPENDENCIES.md)：API、MCP、ARIS、模型和系统依赖。
 - [来源与快照说明](docs/SOURCES.md)：可确认的上游、本机修改与共享文件。
 - [机器可读清单](manifests/skills.json) / [文件 SHA-256](manifests/checksums.json)。
 

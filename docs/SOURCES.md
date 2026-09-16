@@ -5,7 +5,6 @@
 | 内容 | 已确认来源 |
 | --- | --- |
 | ARIS 科研系列及辅助代码 | https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep ，本机检出 c5f3d5bfc694a812012729841e9697223e4f2130 |
-| math-modeling 及嵌套文档工具 | 本机安装锁文件记录 XiaoMaColtAI/math-modeling-skill；快照保留参考资料 |
 | find-skills | 本机安装锁文件记录 vercel-labs/skills，skills/find-skills |
 | gpt-image | 技能 metadata 指向 wuyoscar/gpt_image_2_skill |
 | humanizer | 本机 README 指向 blader/humanizer |

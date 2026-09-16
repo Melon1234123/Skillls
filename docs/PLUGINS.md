@@ -30,6 +30,6 @@
 - **Superpowers**：已确认公开上游为 [obra/superpowers](https://github.com/obra/superpowers)。先阅读该仓库对应目标 agent 的当前安装文档，按其步骤恢复 14 个技能及需要的集成；不要把本仓库中已有的本地修改版 brainstorming 等盲目覆盖。
 - **Hugging Face**：在目标 agent 中安装它实际支持的 Hugging Face skills/工具，或查看 [Hugging Face Skills](https://github.com/huggingface/skills) 的当前支持方式；该公开仓库是替代安装来源，不承诺与原 Codex 插件 1.0.0 内容完全一致。
 - **Google Drive、Sites 和 plugin-management**：需要目标宿主等价的连接器/插件机制。没有相应能力时标为不支持；复制说明文本不能创建远程工具。
-- **documents、spreadsheets、presentations、pdf、template-creator、visualize**：原版本含 Codex runtime 耦合。其他 agent 可使用已有的数学建模 docx/pdf/xlsx 等本地工具，但不能宣称与 Codex 专属能力完全等价。
+- **documents、spreadsheets、presentations、pdf、template-creator、visualize**：原版本含 Codex runtime 耦合。其他 agent 需要自行配置适用的文档处理工具，不能宣称与 Codex 专属能力完全等价。
 
 机器可读包名、技能列表和盘点版本见 [skills.json](../manifests/skills.json)。

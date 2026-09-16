@@ -1,8 +1,8 @@
 # 全部技能安装清单
 
-2026-09-16 本机盘点：114 个快照入口、41 个插件入口、6 个系统入口。
+2026-09-16 本机盘点：108 个快照入口、41 个插件入口、6 个系统入口。
 
-## 本仓库安装（114）
+## 本仓库安装（108）
 
 所有这些条目由 `python3 install.py --agent codex` 安装；其他 agent 更换参数。来源未知不影响快照恢复，但不把推测来源写成已证实来源。
 
@@ -104,7 +104,6 @@
 | resubmit-pipeline | [resubmit-pipeline](../skills/resubmit-pipeline/SKILL.md) | [上游](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep)；本机快照 |
 | result-to-claim | [result-to-claim](../skills/result-to-claim/SKILL.md) | [上游](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep)；本机快照 |
 | run-experiment | [run-experiment](../skills/run-experiment/SKILL.md) | [上游](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep)；本机快照 |
-| run-starskill | [run-starskill](../skills/run-starskill/SKILL.md) | 本机快照；独立上游未确认 |
 | semantic-scholar | [semantic-scholar](../skills/semantic-scholar/SKILL.md) | [上游](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep)；本机快照 |
 | serverless-modal | [serverless-modal](../skills/serverless-modal/SKILL.md) | [上游](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep)；本机快照 |
 | slides-polish | [slides-polish](../skills/slides-polish/SKILL.md) | [上游](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep)；本机快照 |
@@ -117,11 +116,6 @@
 | writing-plans | [writing-plans](../skills/writing-plans/SKILL.md) | 本机快照；独立上游未确认 |
 | writing-systems-papers | [writing-systems-papers](../skills/writing-systems-papers/SKILL.md) | [上游](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep)；本机快照 |
 | find-skills | [find-skills](../skills/find-skills/SKILL.md) | [上游](https://github.com/vercel-labs/skills)；本机快照 |
-| math-modeling | [math-modeling](../skills/math-modeling/SKILL.md) | [上游](https://github.com/XiaoMaColtAI/math-modeling-skill)；本机快照 |
-| docx | [math-modeling/tools/docx](../skills/math-modeling/tools/docx/SKILL.md) | [上游](https://github.com/XiaoMaColtAI/math-modeling-skill)；本机快照 |
-| paper-search | [math-modeling/tools/paper_search](../skills/math-modeling/tools/paper_search/SKILL.md) | [上游](https://github.com/XiaoMaColtAI/math-modeling-skill)；本机快照 |
-| pdf | [math-modeling/tools/pdf](../skills/math-modeling/tools/pdf/SKILL.md) | [上游](https://github.com/XiaoMaColtAI/math-modeling-skill)；本机快照 |
-| xlsx | [math-modeling/tools/xlsx](../skills/math-modeling/tools/xlsx/SKILL.md) | [上游](https://github.com/XiaoMaColtAI/math-modeling-skill)；本机快照 |
 
 ## 插件恢复（41）
 

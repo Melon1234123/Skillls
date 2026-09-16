@@ -771,14 +771,6 @@
       "upstream": "https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep"
     },
     {
-      "id": "run-starskill",
-      "name": "run-starskill",
-      "path": "skills/run-starskill/SKILL.md",
-      "installation": "snapshot",
-      "origin": "local skill",
-      "upstream": null
-    },
-    {
       "id": "semantic-scholar",
       "name": "semantic-scholar",
       "path": "skills/semantic-scholar/SKILL.md",
@@ -873,46 +865,6 @@
       "installation": "snapshot",
       "origin": "shared agent skills",
       "upstream": "https://github.com/vercel-labs/skills"
-    },
-    {
-      "id": "math-modeling",
-      "name": "math-modeling",
-      "path": "skills/math-modeling/SKILL.md",
-      "installation": "snapshot",
-      "origin": "shared agent skills",
-      "upstream": "https://github.com/XiaoMaColtAI/math-modeling-skill"
-    },
-    {
-      "id": "math-modeling/tools/docx",
-      "name": "docx",
-      "path": "skills/math-modeling/tools/docx/SKILL.md",
-      "installation": "snapshot",
-      "origin": "shared agent skills",
-      "upstream": "https://github.com/XiaoMaColtAI/math-modeling-skill"
-    },
-    {
-      "id": "math-modeling/tools/paper_search",
-      "name": "paper-search",
-      "path": "skills/math-modeling/tools/paper_search/SKILL.md",
-      "installation": "snapshot",
-      "origin": "shared agent skills",
-      "upstream": "https://github.com/XiaoMaColtAI/math-modeling-skill"
-    },
-    {
-      "id": "math-modeling/tools/pdf",
-      "name": "pdf",
-      "path": "skills/math-modeling/tools/pdf/SKILL.md",
-      "installation": "snapshot",
-      "origin": "shared agent skills",
-      "upstream": "https://github.com/XiaoMaColtAI/math-modeling-skill"
-    },
-    {
-      "id": "math-modeling/tools/xlsx",
-      "name": "xlsx",
-      "path": "skills/math-modeling/tools/xlsx/SKILL.md",
-      "installation": "snapshot",
-      "origin": "shared agent skills",
-      "upstream": "https://github.com/XiaoMaColtAI/math-modeling-skill"
     },
     {
       "id": "plugin-management:plugin-management",

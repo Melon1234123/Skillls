@@ -34,8 +34,6 @@ git checkout c5f3d5bfc694a812012729841e9697223e4f2130
 | nature-* / documents / spreadsheets / presentations | 各自脚本的 Python/npm 依赖；Codex runtime 工具需匹配宿主，普通 agent 不能通过复制技能获得 |
 | run-experiment / queue / qzcli / vast-gpu / serverless-modal | SSH/GPU/平台 CLI 和用户账号；安装技能不会租机器或发起任务 |
 | feishu-notify | 用户自行设置通知配置；仓库只保留 `YOUR_WEBHOOK_ID` 示例，不包含真实 webhook |
-| run-starskill | **额外需要 StarSkill 项目源码**，其中有 `pyproject.toml`、`src/starskill`、`examples/`；本机技能未给出可验证的上游 URL，所以不编造下载地址。拿到项目后使用 Python 3.11+ 按该技能建虚拟环境安装 |
-| math-modeling | 数学/绘图及文档处理的 Python 库，按相应工具文档安装 |
 
 ## 已知迁移限制
 
