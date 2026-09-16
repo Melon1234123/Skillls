@@ -1,8 +1,8 @@
 ---
 name: paper-poster-html
-description: "DEFAULT poster pipeline — build an academic conference poster (ICML/NeurIPS/ICLR/CVPR/...) as a single HTML/CSS file with measurement-driven hard gates, real paper figures, a two-hue design-token system, and print-ready PDF via headless Chromium. Use when the user says \"做海报\", \"poster\", \"conference poster\", \"paper poster\", or asks to design/redo a research poster."
+description: "DEFAULT poster pipeline — build an academic conference poster (ICML/NeurIPS/ICLR/CVPR/...) as a single HTML/CSS file with measurement-driven hard gates, real paper figures, a two-hue design-token system, and print-ready PDF via headless Chromium. Use when the user says \"做海报\", \"poster\", \"conference poster\", \"paper poster\", or asks to design/redo a research poster. Supersedes the retired LaTeX /paper-poster."
 argument-hint: "[paper-dir-or-pdf] [— venue: ICLR, canvas: 185x90cm landscape, venue-colors: true]"
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob
+allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, WebFetch, WebSearch, AskUserQuestion, mcp__codex__codex
 ---
 
 # Paper Poster (HTML): measurement-gated poster generation
@@ -11,9 +11,9 @@ One HTML file styled for an exact print canvas (`@page { size: W H }`), rendered
 via Playwright print emulation. **Iterate by measuring, not eyeballing** — the screen
 preview lies; only print emulation at the correct viewport tells the truth. Core gate
 machinery is adapted from [posterly](https://github.com/Chenruishuo/posterly) (MIT, ©
-2026 Ruishuo Chen — see `NOTICE.md` and `LICENSES/posterly-MIT.txt` in the mainline
-skill directory); ARIS adds style discipline gates, figure-provenance gates, the
-fresh-agent review loop (same-family provisional in the base mirror), and the anti-patch-loop fix vocabulary.
+2026 Ruishuo Chen — see `NOTICE.md` and `LICENSES/posterly-MIT.txt`); ARIS adds style
+discipline gates, figure-provenance gates, the cross-model review loop, and the
+anti-patch-loop fix vocabulary.
 
 ## Why this skill exists (the failure it prevents)
 
@@ -33,7 +33,7 @@ patch. The cure is structural, not exhortative:
 ## Mental model
 
 ```
-paper (.tex / PDF) ──► content plan + claim→evidence audit (fresh reviewer agent)
+paper (.tex / PDF) ──► content plan + claim→evidence audit (codex, fresh)
                               │
    figures extracted ─────────┤  FIGURE_MANIFEST.json (provenance, sha256)
    (real paper figures ONLY)  ▼
@@ -41,10 +41,10 @@ paper (.tex / PDF) ──► content plan + claim→evidence audit (fresh review
                                   preflight → style → asset → measure → polish
                               │ all hard gates PASS
                               ▼
-                    executor visual review (≤3 issues × ≤3 rounds, fix-vocabulary only)
+                    Claude visual review (≤3 issues × ≤3 rounds, fix-vocabulary only)
                               │ score ≥ 9
                               ▼
-                    final fresh-agent review (same-family provisional, full HTML+PDF)
+                    codex final cross-model review (fresh thread, full HTML+PDF)
                               │ pass
                               ▼
                     verify-final → poster.pdf + GATE_REPORT.json
@@ -52,30 +52,12 @@ paper (.tex / PDF) ──► content plan + claim→evidence audit (fresh review
 
 ## Constants
 
-- **SKILL_SCRIPTS** — helpers and templates are single-owner and ship inside the
-  mainline skill (Arch C) at `skills/paper-poster-html/scripts/` and
-  `skills/paper-poster-html/templates/`. Resolve them in this order:
-
-  ```bash
-  SKILL_HOME=""
-  [ -d ".agents/skills/paper-poster-html/scripts" ] && SKILL_HOME=".agents/skills/paper-poster-html"
-  if [ -z "$SKILL_HOME" ] && [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills-codex.txt ]; then
-      ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills-codex.txt 2>/dev/null) || true
-  fi
-  [ -z "$SKILL_HOME" ] && [ -d "skills/paper-poster-html/scripts" ] && SKILL_HOME="skills/paper-poster-html"
-  [ -z "$SKILL_HOME" ] && [ -n "${ARIS_REPO:-}" ] && [ -d "$ARIS_REPO/skills/paper-poster-html/scripts" ] && SKILL_HOME="$ARIS_REPO/skills/paper-poster-html"
-  [ -z "$SKILL_HOME" ] && [ -d "$HOME/.codex/skills/paper-poster-html/scripts" ] && SKILL_HOME="$HOME/.codex/skills/paper-poster-html"
-  if [ -z "$SKILL_HOME" ]; then
-    echo "ERROR: paper-poster-html scripts not resolved. Re-run the ARIS Codex install." >&2
-  fi
-  SKILL_SCRIPTS="$SKILL_HOME/scripts"
-  ```
-
-  If unresolved, the install is broken: abort and tell the user to re-install (Policy A
-  — the gates ARE the skill; never improvise replacements).
-- **REVIEWER_MODEL** = `gpt-5.6-sol`, reasoning effort `xhigh`, **fresh reviewer agent per
-  review call** (a new `spawn_agent:` every time; never reuse a reviewer agent across
-  review boundaries).
+- **SKILL_SCRIPTS** = `${CLAUDE_SKILL_DIR}/scripts` — all helpers are single-owner and
+  ship inside this skill (Arch C). If the directory is missing the install is broken:
+  abort and tell the user to re-install the skill (Policy A — the gates ARE the skill;
+  never improvise replacements).
+- **REVIEWER_MODEL** = `gpt-5.6-sol`, reasoning `xhigh`, **fresh thread per review call**
+  (`mcp__codex__codex`, never `codex-reply` across review boundaries).
 - **CANVAS** — from the venue's official spec, looked up live in Phase 0. Never assume.
   (Known anchor: ICLR 2026 main = 185×90 cm landscape per its official printing
   service; ICML/NeurIPS commonly 60×36 in landscape; workshop posters often 61×91 cm
@@ -98,9 +80,6 @@ paper (.tex / PDF) ──► content plan + claim→evidence audit (fresh review
      chromium` → if install fails but system Chrome exists, scripts fall back to
      `channel="chrome"` → if all fail: you may produce the content plan and scaffold
      only, label everything **"not print verified"**, and must NOT emit a final PDF.
-     If print rendering, PNG review, or PDF verification is impossible in the current
-     environment, stop and tell the user what to configure. Do not silently degrade
-     this skill into an unmeasured text-only poster draft.
    - `pdfinfo` missing → PyMuPDF reads PDF dimensions. At least one of
      pdftoppm / PyMuPDF must exist for PNG review renders.
    - MathJax: download `tex-svg.js` once into `poster_html/assets/mathjax/` and
@@ -114,9 +93,9 @@ paper (.tex / PDF) ──► content plan + claim→evidence audit (fresh review
 **🚦 Checkpoint**: echo the venue spec table (canvas, orientation, source URL) and the
 chosen template. Wait.
 
-### Phase 0.5 — Design discovery (one question batch)
+### Phase 0.5 — Design discovery (one AskUserQuestion batch)
 
-Ask the user once, ≤4 questions: layout template (from `templates/README.md`), palette
+Ask once, ≤4 questions: layout template (from `templates/README.md`), palette
 (default generic pack / venue pack / custom within constraints), logos + venue mark
 (paths or "none" — never fabricate; check the venue's logo policy), QR target (paper /
 code / project page / none — generate **offline** with `qrencode` or python-`qrcode`;
@@ -145,24 +124,11 @@ never reverted.
    claim/evidence pill table for numeric-heavy posters. **Do not invent an algorithm.**
    If the paper has only an objective, label the component "objective flow" or "loss
    anatomy", never "algorithm".
-2. **Fresh-agent content audit** (same-family provisional): give it the content plan path
-   + paper source path(s) — paths only, no summaries — and ask for a claim→evidence
-   table. Save to `poster_html/CLAIM_EVIDENCE.md`.
-
-   ```text
-   spawn_agent:
-     model: gpt-5.6-sol
-     reasoning_effort: xhigh
-     message: |
-       Audit a conference-poster content plan against its source paper.
-       Read these files yourself (no other context is provided):
-       - poster_html/POSTER_CONTENT_PLAN.md
-       - [paper source path(s)]
-       For EVERY claim, number, equation, and attribution in the plan, output one row:
-       | claim on poster | paper file:line | paper says (verbatim) | match? |
-       with match ∈ {OK, NUMERIC-MISMATCH, OVERCLAIM, MISSING-PRECONDITION,
-       NOT-IN-PAPER, SCOPE-NARROWED}. End with a count per category.
-   ```
+2. **Cross-model content audit** (fresh codex thread, `xhigh`): give it the content
+   plan path + paper source path(s) — paths only, no summaries — and ask for a
+   claim→evidence table: `| claim on poster | paper file:line | paper says (verbatim) |
+   match? |` with match ∈ {OK, NUMERIC-MISMATCH, OVERCLAIM, MISSING-PRECONDITION,
+   NOT-IN-PAPER, SCOPE-NARROWED}. Save to `poster_html/CLAIM_EVIDENCE.md`.
 3. Fix every non-OK row or record it as a user-acknowledged tradeoff.
 
 **🚦 Checkpoint**: content plan + audit summary. Wait.
@@ -193,11 +159,11 @@ before→after story belong in one `figure--duo` card, not two cards.
 
 ### Phase 3 — Scaffold + tokens
 
-`cp "$SKILL_HOME/templates/<chosen>.html" poster_html/poster.html`; retarget `@page`
-+ `.poster` dims to the venue canvas (two edits, same values); apply the chosen token
-pack onto the `:root` DESIGN TOKENS block; fill content per the plan; embed manifest
-figures. Run `preflight` + `style_check` — both must PASS before any layout iteration.
-(A fresh scaffold is *expected* to fail `measure` — that gate judges a filled poster.)
+`cp templates/<chosen>.html poster_html/poster.html`; retarget `@page` + `.poster`
+dims to the venue canvas (two edits, same values); apply the chosen token pack onto the
+`:root` DESIGN TOKENS block; fill content per the plan; embed manifest figures.
+Run `preflight` + `style_check` — both must PASS before any layout iteration. (A fresh
+scaffold is *expected* to fail `measure` — that gate judges a filled poster.)
 
 ### Phase 4 — Layout hard loop
 
@@ -217,7 +183,7 @@ proceed while any hard gate fails. Do not let a reviewer see an unmeasured poste
 Balance under-filled columns with *content from the paper* (Gate C), never with
 whitespace, `space-between`, or stretched cards.
 
-### Phase 5 — Executor visual review (gated aesthetics)
+### Phase 5 — Claude visual review (gated aesthetics)
 
 Render and read the result yourself:
 
@@ -227,21 +193,17 @@ pdftoppm -r 100 poster_html/poster_preview.pdf poster_html/review_full -png -f 1
 # plus 2-4 region crops at higher res (header / one column / equations) via PIL
 ```
 
-**Calibrate first** (per
-[`taste-calibration.md`](../shared-references/taste-calibration.md)): if **human-curated**
-`references/good/` + `references/bad/` exist under this skill dir (or the
-project supplies its own pair), score those 3+3 reference posters on the axes
-below BEFORE the target, anchoring the scale. Never select, search for, or
-generate anchors yourself; if no reference sets exist, proceed uncalibrated and
-mark `CALIBRATION: none` — never fabricate anchor scores. Axes (weights sum
-1.0): Design 0.35 · Craft 0.30 · Functionality 0.20 · Originality 0.15.
-Mapping: `SCORE = min(round(1 + 9 × COMPOSITE), lowest triggered cap)` — caps
-apply AFTER the mapping, and the loop's `Score ≥ 9` threshold always reads this
-final capped `SCORE`, never the raw composite.
-
-The visual review writes `CALIBRATION: anchored|none`, per-axis scores, and the
-mandatory GAP paragraph. A fresh Codex review may drive another layout round but
-its positive result is `acceptance_status: provisional`.
+**Calibrate first** (`../shared-references/taste-calibration.md`): if
+**human-curated** `references/good/` + `references/bad/` exist under this skill
+dir (or the project supplies its own pair), score those 3+3 reference posters
+on the axes below BEFORE the target, anchoring the scale. Never select, search
+for, or generate anchors yourself; if no reference sets exist, proceed
+uncalibrated and mark `CALIBRATION: none` — never fabricate anchor scores.
+Axes (weights sum 1.0): Design 0.35 · Craft 0.30 · Functionality 0.20 ·
+Originality 0.15. Mapping: `SCORE = min(round(1 + 9 × COMPOSITE), lowest
+triggered cap)` — caps apply AFTER the mapping, and the loop's `Score ≥ 9`
+threshold below always reads this final capped `SCORE`, never the raw
+composite.
 
 Score strictly 1–10. **Critical caps** (hard floors — a calibrated composite
 never overrides them): < 2 real paper figures → ≤ 3; broken canvas /
@@ -284,32 +246,17 @@ Forbidden: new inline styles, new hex values anywhere, bespoke decorative SVG,
 per-element font-size overrides. **A new component may not be born inside the visual
 loop** — stop, get a human checkpoint, add it to `COMPONENTS.md`, re-run from Phase 3.
 
-### Phase 6 — Final review (fresh reviewer agent, same-family provisional)
+### Phase 6 — Codex final review (fresh thread, cross-model)
 
 All hard gates PASS + polish warnings zero-or-waived + visual ≥ 9 first. Then a fresh
-reviewer agent reviews the **final artifacts** (not the content plan) — paths only, no
-executor framing:
-
-```text
-spawn_agent:
-  model: gpt-5.6-sol
-  reasoning_effort: xhigh
-  message: |
-    Final print-readiness audit of a conference poster. Read these files yourself:
-    - poster_html/poster.html (final single-file poster)
-    - poster_html/poster_preview.png (rendered preview — view it)
-    - [paper source path(s)]
-    - poster_html/GATE_REPORT.json
-    - poster_html/CLAIM_EVIDENCE.md
-    Check: (1) fidelity & overclaims RE-CHECKED on the final text (polish introduces
-    new claims), (2) residue (\ref{, TODO, raw < in math, missing images, remote
-    URLs), (3) visual rhetoric (headline numbers prominent, banner readable from
-    2 m), (4) gate-log coherence.
-    Verdict: PRINT-READY or NEEDS-FIX with a numbered, severity-ordered issue list.
-```
-
-The reviewer recommends; it does not edit. Any fix → back through Phase 4/5 gates —
-never straight to re-review.
+codex thread (`xhigh`) reviews the **final artifacts** (not the content plan):
+`poster.html`, the rendered PDF/PNG, the paper source, `GATE_REPORT.json`,
+`CLAIM_EVIDENCE.md` — paths only, no executor framing. It checks: (1) fidelity &
+overclaims **re-checked on final text** (polish introduces new claims), (2) residue
+(`\ref{`, `TODO`, raw `<` in math, missing images, remote URLs), (3) visual rhetoric
+(headline numbers prominent, banner readable from 2 m), (4) gate-log coherence. The
+reviewer recommends; it does not edit. Any fix → back through Phase 4/5 gates — never
+straight to re-review.
 
 ### Phase 7 — Final verification + report
 
@@ -320,20 +267,20 @@ python3 "$SKILL_SCRIPTS/poster_check.py" verify-final poster_html/poster_preview
 
 Page count 1, dimensions match `@page`, size ≤ 20 MB, no TODO/residue, no remote
 assets. Report: PDF path, final spread px, footer-gap range, gate summary table,
-unresolved waivers, reviewer verdict. Update `POSTER_STATE.json` → `done`.
+unresolved waivers, codex verdict. Update `POSTER_STATE.json` → `done`.
 
 ## State persistence
 
 `poster_html/POSTER_STATE.json`: `{phase, venue, canvas{w,h,orientation,source_url,
 retrieved}, template, token_pack, design_decisions{...}, figures_selected[],
-visual_rounds, reviewer_verdicts{audit, final}, status, timestamp}` — written after
-every phase; enables compact-recovery resume.
+visual_rounds, codex_threads{audit, final}, status, timestamp}` — written after every
+phase; enables compact-recovery resume.
 
 ## Key rules
 
 - **Measure, don't eyeball.** No layout claim without `run_gates.py` output.
-- **Gates before aesthetics.** A reviewer only ever sees a poster whose hard gates
-  PASS. This ordering is what kills the patch-loop death spiral.
+- **Gates before aesthetics.** Claude/codex review only ever sees a poster whose hard
+  gates PASS. This ordering is what kills the patch-loop death spiral.
 - **Never invent paper numbers or figures.** Numbers come from the paper source;
   visuals carry manifest provenance. Fabrication = critical cap ≤ 3.
 - **Two hues, one system.** Accent + gold + neutrals. The style gate enforces it;
@@ -342,9 +289,8 @@ every phase; enables compact-recovery resume.
   dashboard, not a poster.
 - **Fix vocabulary is closed.** If a fix isn't expressible as token / component /
   rebalance / asset / canvas, it's the wrong fix.
-- **Review-class verdicts.** The executor drives the loop and scores visuals;
-  acceptance of content fidelity comes from the fresh reviewer agent (a loop can
-  drive, never acquit).
+- **Cross-model verdicts.** Claude drives the loop and scores visuals; acceptance of
+  content fidelity comes from the fresh codex thread (a loop can drive, never acquit).
 - **Preserve user decisions.** Re-read `design_decisions` before "improving" anything.
 - **Vendor boundary.** `poster_check.py`, `render_preview.py`, `_posterly/` are
   vendored from posterly — keep diffs minimal; ARIS-side logic goes in the new
@@ -352,8 +298,8 @@ every phase; enables compact-recovery resume.
 
 ## Review tracing
 
-Save every reviewer call's trace per `../shared-references/review-tracing.md` to
-`.aris/traces/paper-poster-html/<date>_run<NN>/` (audit + final agents, raw responses).
+Save every codex reviewer call's trace per `shared-references/review-tracing.md` to
+`.aris/traces/paper-poster-html/<date>_run<NN>/` (audit + final threads, raw responses).
 
 ## Output contract
 
@@ -365,7 +311,7 @@ poster_html/
 ├── POSTER_STATE.json        # resume state
 ├── GATE_REPORT.json         # canonical gate ledger (schema v1)
 ├── POSTER_CONTENT_PLAN.md   # what-goes-where + word budgets
-├── CLAIM_EVIDENCE.md        # reviewer claim→evidence audit
+├── CLAIM_EVIDENCE.md        # codex claim→evidence audit
 ├── FIGURE_MANIFEST.json     # figure provenance (sha256, page, bbox, dpi)
 └── assets/{paper_figures,logos,qr,mathjax}/
 ```

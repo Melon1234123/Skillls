@@ -6,13 +6,13 @@
 
 已随仓库补齐 `experiment-queue/scripts`、`figure-spec/scripts` 和 `paper-poster-html` 的脚本/模板/许可证，并将原本指向旧电脑的 `shared-references` 符号链接展开成真实文件。`_shared` 是 Nature 系列的公共内容，必须与技能保持同级。
 
-辅助运行树安装在 `<技能目录父级>/skillls-runtime/aris`，包含 `tools`、`templates`、`mcp-servers` 及若干工具的 canonical skills 路径。这是辅助文件子集，**不是完整 ARIS 源码检出**。使用安装报告中的绝对路径为相关进程设置 `ARIS_REPO`，例如默认 Codex 安装：
+辅助运行树安装在 `<技能目录父级>/skillls-runtime/aris`，包含本机 ARIS 源码文件、脚本、模板、MCP 服务和测试（不含 `.git` 元数据与缓存）。使用安装报告中的绝对路径为相关进程设置 `ARIS_REPO`，例如默认 Codex 安装：
 
 ```bash
 export ARIS_REPO="$HOME/.codex/skillls-runtime/aris"
 ```
 
-自定义 `CODEX_HOME` 或 `--dest` 时必须使用安装报告实际路径。Windows PowerShell 使用 `$env:ARIS_REPO = '实际路径'`。若某工作流需要完整源码、测试集或未随包带入的服务，从已确认上游克隆并固定本机基线：
+自定义 `CODEX_HOME` 或 `--dest` 时必须使用安装报告实际路径。Windows PowerShell 使用 `$env:ARIS_REPO = '实际路径'`。源码已随包归档；若需要带 Git 历史的检出或上游更新，可从已确认上游克隆并固定本机基线：
 
 ```bash
 git clone https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep.git ARIS

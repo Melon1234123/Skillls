@@ -7,6 +7,15 @@ allowed-tools: Bash(*), Read, Grep, Glob, Edit, Write, Skill(run-experiment), Sk
 
 # Experiment Queue
 
+> ⏱ **External cadence: visibility only.** This skill already runs its own
+> detached server-side scheduler (60s poll + `depends_on` + wave transitions).
+> Use its status output for overnight visibility (N done / N running / N
+> pending); do **not** wrap it in a second `/loop` / `CronCreate` poll — that
+> duplicates the scheduler on an uncoordinated clock and races the
+> wave-transition logic it was built to prevent. See
+> [`shared-references/external-cadence.md`](../shared-references/external-cadence.md)
+> ("don't duplicate an existing scheduler").
+
 Orchestrate large batches of ML experiments on SSH remote GPU servers with proper state tracking, OOM retry, stale cleanup, and wave transitions.
 
 ## When to Use This Skill
@@ -95,10 +104,10 @@ stale_screen_detected → cleaned → pending
 > unchanged. Before handing a `stuck` batch to the human, the OPERATING AGENT
 > should check: if the same failure repeats across jobs, try ONE clean
 > reimplement of the **agent-generated wrapper/attempt script only** — never
-> user/project source, the manifest, queue state, logs, or results (per
-> [`external-cadence.md`](../shared-references/external-cadence.md), "Let a broken attempt restart, not just patch").
-> Reserve the human handoff for contract/environment doubts, not merely broken
-> attempt code.
+> user/project source (`run_*.py` you didn't write), the manifest, queue state,
+> logs, or results (see `shared-references/external-cadence.md` § *Let a broken
+> attempt restart, not just patch*). Reserve the human handoff for
+> contract/environment doubts, not merely broken attempt code.
 
 ### Wave Orchestration
 
@@ -117,12 +126,12 @@ Input can be:
 - **Grid spec** (Cartesian product of param values, e.g., `N=[64,128,256] × n=[50K,150K,500K,652K]`)
 - **Natural language description** (Claude parses into manifest)
 
-Bind run identifiers once so every later step refers to the same paths:
+Bind the run identifiers once so every later step (manifest save, scp, launch, monitor, resume) refers to the same paths. Set these as local shell variables before generating the manifest:
 
 ```bash
 # REPLACE the placeholder path before running, or pre-export PROJECT_DIR:
 PROJECT_DIR="${PROJECT_DIR:?set PROJECT_DIR to the local project root}"
-RUN_TS=$(date -u +%Y%m%dT%H%M%SZ)
+RUN_TS=$(date -u +%Y%m%dT%H%M%SZ)             # one timestamp per run, reused everywhere
 LOCAL_RUN_DIR="$PROJECT_DIR/experiment_queue/$RUN_TS"
 mkdir -p "$LOCAL_RUN_DIR"
 ```
@@ -141,27 +150,43 @@ If any precondition fails, show user which jobs are blocked and why.
 
 ### Step 3: Launch Scheduler
 
-Resolve the bundled helper directory (`$PROJECT_DIR` / `$RUN_TS` / `$LOCAL_RUN_DIR` already set in Step 1). Phase 3.3 (Arch C) moved the canonical scripts to `skills/experiment-queue/scripts/`; `tools/experiment_queue/` retains `os.execv` shims for legacy resolver layers:
+The canonical scheduler implementation lives in `skills/experiment-queue/scripts/queue_manager.py` (Phase 3.3 move, Arch C). `tools/experiment_queue/queue_manager.py` is now a Python `os.execv` shim retained for legacy resolver-chain compatibility. Three preliminaries before launch.
+
+**3a. Resolve the local helper directory.** The two helpers (`queue_manager.py`, `build_manifest.py`) now sit under `skills/experiment-queue/scripts/` in the ARIS repo, with shims at `tools/experiment_queue/` for legacy resolver layers. Use this hybrid chain so the skill works from any project layout:
 
 ```bash
-if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills-codex.txt ]; then
-    ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills-codex.txt 2>/dev/null) || true
+# Layer 0: self-contained (CC 1.0+ exposes $CLAUDE_SKILL_DIR).
+QUEUE_TOOLS=""
+if [ -n "${CLAUDE_SKILL_DIR:-}" ] && [ -f "$CLAUDE_SKILL_DIR/scripts/queue_manager.py" ]; then
+  QUEUE_TOOLS="$CLAUDE_SKILL_DIR/scripts"
 fi
-[ -n "${ARIS_REPO:-}" ] || { echo "ERROR: ARIS_REPO not set. Use install_aris_codex.sh managed install or export ARIS_REPO=/path/to/ARIS."; exit 1; }
-# Prefer the new canonical location; fall back to legacy tools/ shim path.
-QUEUE_TOOLS="$ARIS_REPO/skills/experiment-queue/scripts"
-[ -f "$QUEUE_TOOLS/queue_manager.py" ] || QUEUE_TOOLS="$ARIS_REPO/tools/experiment_queue"
-[ -f "$QUEUE_TOOLS/queue_manager.py" ] || { echo "ERROR: queue_manager.py not found at $ARIS_REPO/skills/experiment-queue/scripts/ or $ARIS_REPO/tools/experiment_queue/"; exit 1; }
+# Layers 1-4: legacy chain via tools/experiment_queue/ shims.
+if [ -z "$QUEUE_TOOLS" ]; then
+  cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
+  if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
+      ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null) || true
+  fi
+  if [ -z "${ARIS_REPO:-}" ] && [ -f "$HOME/.aris/repo" ]; then
+      ARIS_REPO=$(cat "$HOME/.aris/repo" 2>/dev/null) || true
+  fi
+  QUEUE_TOOLS=".aris/tools/experiment_queue"
+  [ -f "$QUEUE_TOOLS/queue_manager.py" ] || QUEUE_TOOLS="tools/experiment_queue"
+  [ -f "$QUEUE_TOOLS/queue_manager.py" ] || { [ -n "${ARIS_REPO:-}" ] && QUEUE_TOOLS="$ARIS_REPO/tools/experiment_queue"; }
+  [ -f "$QUEUE_TOOLS/queue_manager.py" ] || QUEUE_TOOLS=""
+fi
+[ -z "$QUEUE_TOOLS" ] && { echo "ERROR: experiment_queue helpers not found (layer 0: \$CLAUDE_SKILL_DIR/scripts/; layers 1-4: .aris/tools/, tools/, \$ARIS_REPO/tools/, \$ARIS_REPO/tools/ via ~/.aris/repo). Rerun install_aris.sh or smart_update.sh (refreshes ~/.aris/repo), set ARIS_REPO, or copy the canonical scripts from \$ARIS_REPO/skills/experiment-queue/scripts/." >&2; exit 1; }
 ```
 
-Compute remote paths (note: modern `scp` runs in SFTP mode and does NOT reliably expand `$HOME` in destination paths — use remote-relative for `scp`, `$HOME`-prefixed for `ssh` command strings):
+The `.aris/tools` symlink is set up by `install_aris.sh` (#174). Older installs without that symlink fall through to `tools/experiment_queue` (works if invoked from inside the ARIS repo), `$ARIS_REPO/tools/experiment_queue`, or the same path resolved via the global pointer file `~/.aris/repo` (#366, for installs with no project-local manifest). After Phase 3.3, each of those legacy paths contains a Python `os.execv` shim that forwards to the canonical `skills/experiment-queue/scripts/` location, so existing users do not need to re-run anything.
+
+**3b. Compute remote paths.** Use both a remote-relative form (for `scp` destinations — modern `scp` runs in SFTP mode and does NOT reliably expand `$HOME` in destination paths) and a `$HOME`-prefixed form (for `ssh ... command` strings, where remote bash WILL expand `$HOME`):
 
 ```bash
-REMOTE_RUN_REL=".aris_queue/runs/$RUN_TS"
-REMOTE_RUN_DIR="\$HOME/$REMOTE_RUN_REL"
+REMOTE_RUN_REL=".aris_queue/runs/$RUN_TS"          # for scp destinations (relative to remote home)
+REMOTE_RUN_DIR="\$HOME/$REMOTE_RUN_REL"            # for ssh command strings (literal $HOME, expanded on remote)
 ```
 
-Bootstrap remote run dir + copy helpers + copy manifest. Per-invocation, idempotent:
+**3c. Bootstrap the remote run directory and copy helpers + manifest.** Per-invocation and idempotent. Use a unique run directory rather than `/tmp` so concurrent queues do not collide and so resume-after-crash is reproducible.
 
 ```bash
 ssh <server> "mkdir -p \"$REMOTE_RUN_DIR/logs\" \"\$HOME/.aris_queue\""
@@ -169,7 +194,7 @@ scp "$QUEUE_TOOLS/queue_manager.py" "$QUEUE_TOOLS/build_manifest.py" <server>:.a
 scp "$LOCAL_RUN_DIR/manifest.json" <server>:"$REMOTE_RUN_REL/manifest.json"
 ```
 
-Launch the scheduler as a detached `nohup` process:
+**3d. Launch the scheduler as a detached `nohup` process on the SSH host:**
 
 ```bash
 ssh <server> "nohup python3 \"\$HOME/.aris_queue/queue_manager.py\" \\
@@ -179,28 +204,28 @@ ssh <server> "nohup python3 \"\$HOME/.aris_queue/queue_manager.py\" \\
   > \"$REMOTE_RUN_DIR/queue_mgr.log\" 2>&1 &"
 ```
 
-Notes: `--log-dir` is what `queue_manager.py` actually consumes (per-job log files for OOM detection). Do NOT pass `--log <path>` — that flag is declared but unused.
+Notes for callers:
+- `--log-dir` is what `queue_manager.py` actually consumes (per-job log files for OOM detection). Do NOT pass `--log <path>` — that flag is declared but unused, and a single combined log breaks the per-job stale-screen / OOM heuristics.
+- Persist `RUN_TS` / `REMOTE_RUN_REL` / `REMOTE_RUN_DIR` to disk so monitoring and resume can reload them without regenerating:
 
-Persist run identifiers for monitoring + resume (sourceable later):
+  ```bash
+  {
+    printf 'PROJECT_DIR=%q\n'    "$PROJECT_DIR"
+    printf 'RUN_TS=%q\n'         "$RUN_TS"
+    printf 'LOCAL_RUN_DIR=%q\n'  "$LOCAL_RUN_DIR"
+    printf 'REMOTE_RUN_REL=%q\n' "$REMOTE_RUN_REL"
+    printf 'REMOTE_RUN_DIR=%q\n' "$REMOTE_RUN_DIR"
+  } > "$LOCAL_RUN_DIR/run_meta.txt"
+  ```
+
+  `%q` shell-escapes the values so the file is safely sourceable later. Note that `REMOTE_RUN_DIR` keeps a literal `$HOME` (do not expand it locally), which is the right form for re-use inside `ssh "..."` strings later.
+
+**3e. Resume an existing queue (only when the user asks).** A fresh `RUN_TS` per invocation is correct for *new* queues. To resume a crashed queue, do NOT regenerate `RUN_TS` — reload the recorded values and re-run only the launch command (Step 3d), not the bootstrap (Step 3c):
 
 ```bash
-{
-  printf 'PROJECT_DIR=%q\n'    "$PROJECT_DIR"
-  printf 'RUN_TS=%q\n'         "$RUN_TS"
-  printf 'LOCAL_RUN_DIR=%q\n'  "$LOCAL_RUN_DIR"
-  printf 'REMOTE_RUN_REL=%q\n' "$REMOTE_RUN_REL"
-  printf 'REMOTE_RUN_DIR=%q\n' "$REMOTE_RUN_DIR"
-} > "$LOCAL_RUN_DIR/run_meta.txt"
-```
-
-`%q` shell-escapes values; `REMOTE_RUN_DIR` keeps a literal `$HOME` (correct for later reuse inside `ssh "..."`).
-
-**Resume an existing queue.** Do NOT regenerate `RUN_TS`. Reload from `run_meta.txt` and re-run only the launch command above (not the bootstrap):
-
-```bash
-LOCAL_RUN_DIR="/abs/path/to/project/experiment_queue/<existing-run-ts>"
-. "$LOCAL_RUN_DIR/run_meta.txt"
-# Then re-run the launch command verbatim; do NOT re-run mkdir/scp.
+LOCAL_RUN_DIR="/abs/path/to/project/experiment_queue/<existing-run-ts>"   # the run dir to resume
+. "$LOCAL_RUN_DIR/run_meta.txt"                                            # reloads PROJECT_DIR / RUN_TS / REMOTE_RUN_REL / REMOTE_RUN_DIR
+# Then re-run Step 3d verbatim. Do NOT re-run Step 3c (would overwrite manifest.json + state.json).
 ```
 
 The scheduler:
@@ -215,14 +240,14 @@ The scheduler:
 
 ### Step 4: Monitoring
 
-User can check state anytime, using `$REMOTE_RUN_DIR` from Step 3 (or reload it from `$LOCAL_RUN_DIR/run_meta.txt`):
+User can check state anytime, using `$REMOTE_RUN_DIR` from Step 3b (or reload from `$LOCAL_RUN_DIR/run_meta.txt` for an older run):
 
 ```bash
 ssh <server> "cat \"$REMOTE_RUN_DIR/queue_state.json\"" \
   | jq '.jobs | group_by(.status) | map({(.[0].status): length}) | add'
 ```
 
-Note: `/monitor-experiment` is currently focused on screen sessions, result JSONs, and W&B; it does not yet read `queue_state.json` directly. For queue-state monitoring, use the literal command above.
+Note: `/monitor-experiment` is currently focused on screen sessions, result JSONs, and W&B; it does not yet read `queue_state.json` directly. For queue-state monitoring, use the literal command above against the recorded `REMOTE_RUN_DIR`. (Tracking `/monitor-experiment` queue-state integration as a follow-up.)
 
 ### Step 5: Post-completion
 
@@ -380,8 +405,8 @@ Then user can check anytime or wait for summary report.
 - `/run-experiment` — single experiment deployment
 - `/monitor-experiment` — check progress (now reads from queue_state.json)
 - `/analyze-results` — post-hoc analysis
-- `skills/experiment-queue/scripts/queue_manager.py` (canonical, Phase 3.3 move) — the scheduler implementation. Legacy entry at `tools/experiment_queue/queue_manager.py` is an `os.execv` shim.
-- `skills/experiment-queue/scripts/build_manifest.py` (canonical, Phase 3.3 move) — build manifest from grid spec. Legacy entry at `tools/experiment_queue/build_manifest.py` is an `os.execv` shim.
+- `skills/experiment-queue/scripts/queue_manager.py` (canonical, Phase 3.3 move) — the scheduler implementation; resolved at runtime via the fallback chain in Step 3a. Legacy entry at `tools/experiment_queue/queue_manager.py` is an `os.execv` shim.
+- `skills/experiment-queue/scripts/build_manifest.py` (canonical, Phase 3.3 move) — build manifest from grid spec; same resolution chain. Legacy entry at `tools/experiment_queue/build_manifest.py` is an `os.execv` shim.
 
 ## Rationale / Source
 

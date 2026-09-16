@@ -36,39 +36,49 @@ Generate publication-quality **architecture diagrams**, **workflow pipelines**, 
 ## Tool Location
 
 Phase 3.1 (Arch C) move: the canonical implementation now lives at
-`skills/figure-spec/scripts/figure_renderer.py`. `tools/figure_renderer.py`
-is kept as a backwards-compatible `os.execv` shim so legacy layers
-continue to resolve. Codex-side install layouts that previously
-copied the canonical into `~/.codex/skills/figure-spec/figure_renderer.py`
-must now place it at `~/.codex/skills/figure-spec/scripts/figure_renderer.py`
-to match the new layout (re-run `install_aris_codex.sh` to pick up
-the new symlink target).
+`skills/figure-spec/scripts/figure_renderer.py` (this SKILL's own
+`scripts/` subdirectory). A backwards-compatible shim at
+`tools/figure_renderer.py` forwards to the canonical file via
+`os.execv`, so existing users with `.aris/tools/figure_renderer.py`
+or a manually copied `tools/figure_renderer.py` keep working
+unchanged.
 
-Resolve `$FIGURE_RENDERER` via the Codex-side hybrid chain (layer 0
-preferred for self-contained owner SKILL; layers 1-4 are legacy
-shared-runtime compatibility):
+Resolve `$FIGURE_RENDERER` with the hybrid chain (layer 0 prefers the
+self-contained location for the owning SKILL; layers 1-4 are the
+shared-runtime chain documented in
+[`shared-references/integration-contract.md`](../shared-references/integration-contract.md) §2,
+Policy A — skill-local gate):
 
 ```bash
-# Layer 0: self-contained at the new canonical location (Phase 3.1).
+# Layer 0: self-contained (CC 1.0+ exposes $CLAUDE_SKILL_DIR).
 FIGURE_RENDERER=""
-if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills-codex.txt ]; then
-    ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills-codex.txt 2>/dev/null) || true
+if [ -n "${CLAUDE_SKILL_DIR:-}" ] && [ -f "$CLAUDE_SKILL_DIR/scripts/figure_renderer.py" ]; then
+  FIGURE_RENDERER="$CLAUDE_SKILL_DIR/scripts/figure_renderer.py"
 fi
-[ -n "${ARIS_REPO:-}" ] && [ -f "$ARIS_REPO/skills/figure-spec/scripts/figure_renderer.py" ] && FIGURE_RENDERER="$ARIS_REPO/skills/figure-spec/scripts/figure_renderer.py"
-
-# Layers 1-3: legacy shared-runtime chain via shim at tools/figure_renderer.py.
-[ -z "$FIGURE_RENDERER" ] && [ -n "${ARIS_REPO:-}" ] && [ -f "$ARIS_REPO/tools/figure_renderer.py" ] && FIGURE_RENDERER="$ARIS_REPO/tools/figure_renderer.py"
-[ -z "$FIGURE_RENDERER" ] && [ -f tools/figure_renderer.py ] && FIGURE_RENDERER="tools/figure_renderer.py"
-
-# Layer 4: Codex-side skill-local install (`install_aris_codex.sh` may place it here).
-[ -z "$FIGURE_RENDERER" ] && [ -f ~/.codex/skills/figure-spec/scripts/figure_renderer.py ] && FIGURE_RENDERER="$HOME/.codex/skills/figure-spec/scripts/figure_renderer.py"
-[ -z "$FIGURE_RENDERER" ] && [ -f ~/.codex/skills/figure-spec/figure_renderer.py ] && FIGURE_RENDERER="$HOME/.codex/skills/figure-spec/figure_renderer.py"  # pre-Phase-3.1 layout
-
-[ -n "$FIGURE_RENDERER" ] || {
-  echo "ERROR: figure_renderer.py not found at any of: \$ARIS_REPO/skills/figure-spec/scripts/, \$ARIS_REPO/tools/, tools/, ~/.codex/skills/figure-spec/scripts/, ~/.codex/skills/figure-spec/. Set ARIS_REPO, rerun install_aris_codex.sh, or copy the canonical \$ARIS_REPO/skills/figure-spec/scripts/figure_renderer.py next to this skill." >&2
+# Layers 1-4: shared-runtime chain (legacy compatibility + non-CC hosts).
+if [ -z "$FIGURE_RENDERER" ]; then
+  cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
+  if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
+      ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null) || true
+  fi
+  if [ -z "${ARIS_REPO:-}" ] && [ -f "$HOME/.aris/repo" ]; then
+      ARIS_REPO=$(cat "$HOME/.aris/repo" 2>/dev/null) || true
+  fi
+  FIGURE_RENDERER=".aris/tools/figure_renderer.py"
+  [ -f "$FIGURE_RENDERER" ] || FIGURE_RENDERER="tools/figure_renderer.py"
+  [ -f "$FIGURE_RENDERER" ] || { [ -n "${ARIS_REPO:-}" ] && FIGURE_RENDERER="$ARIS_REPO/tools/figure_renderer.py"; }
+  [ -f "$FIGURE_RENDERER" ] || FIGURE_RENDERER=""
+fi
+[ -z "$FIGURE_RENDERER" ] && {
+  echo "ERROR: figure_renderer.py not resolved (layer 0: \$CLAUDE_SKILL_DIR/scripts/; layers 1-4: .aris/tools/, tools/, \$ARIS_REPO/tools/, \$ARIS_REPO/tools/ via ~/.aris/repo)." >&2
+  echo "       /figure-spec cannot produce SVG output. Fix: rerun bash tools/install_aris.sh or smart_update.sh (refreshes ~/.aris/repo), or copy the helper from \$ARIS_REPO/skills/figure-spec/scripts/." >&2
   exit 1
 }
+```
 
+Invoke:
+
+```bash
 python3 "$FIGURE_RENDERER" render <spec.json> --output <out.svg>
 python3 "$FIGURE_RENDERER" validate <spec.json>
 python3 "$FIGURE_RENDERER" schema
@@ -132,7 +142,7 @@ Start from a template based on the diagram type:
 ### Step 3: Render and Validate
 
 ```bash
-# Validate first
+# Validate first ($FIGURE_RENDERER was resolved in "Tool Location" above)
 python3 "$FIGURE_RENDERER" validate /tmp/spec.json
 
 # Render to SVG
@@ -157,13 +167,13 @@ If issues found, edit the JSON spec (never the generated SVG) and re-render.
 
 ### Step 5: Iterate with Codex Review (Optional, for High-Stakes Figures)
 
-For paper architecture figures, invoke fresh-agent review (same-family provisional in the base mirror):
+For paper architecture figures, invoke cross-model review:
 
-```text
-spawn_agent:
+```
+mcp__codex__codex:
   model: gpt-5.6-sol
-  reasoning_effort: xhigh
-  message: |
+  config: {"model_reasoning_effort": "xhigh"}
+  prompt: |
     Review this SVG figure for a technical paper (architecture / workflow diagram).
 
     Spec file: /path/to/spec.json
@@ -181,7 +191,7 @@ Iterate until all three axes ≥ 7/10. The ARIS tech report figures went through
 
 ## Schema Quick Reference
 
-Run `python3 "$FIGURE_RENDERER" schema` for the authoritative schema.
+Run `python3 "$FIGURE_RENDERER" schema` (resolve $FIGURE_RENDERER per "Tool Location" above) for the authoritative schema.
 
 ### Nodes
 
@@ -249,4 +259,4 @@ Three-stage horizontal cascade with inputs feeding in from top, outputs exiting 
 
 ## Review Tracing
 
-After each reviewer agent call, save the trace following `shared-references/review-tracing.md` (Policy C — forensic; never silently skip). Use `save_trace.sh` (resolved per the chain in `shared-references/integration-contract.md` §2) or write files directly to `.aris/traces/<skill>/<date>_run<NN>/`. Respect the `--- trace:` parameter (default: `full`).
+After each `mcp__codex__codex` or `mcp__codex__codex-reply` reviewer call, save the trace following `shared-references/review-tracing.md` (Policy C — forensic; never silently skip). Use `save_trace.sh` (resolved per the chain in `shared-references/integration-contract.md` §2) or write files directly to `.aris/traces/<skill>/<date>_run<NN>/`. Respect the `--- trace:` parameter (default: `full`).

@@ -2,7 +2,7 @@
 name: paper-illustration-image2
 description: "Generate publication-quality academic illustrations through a local Codex app-server bridge that uses Codex native image generation. This is a separate experimental alternative to `paper-illustration`, intended for Claude Code users who want a GPT-image-style renderer without modifying the original skill."
 argument-hint: "[description-or-method-file]"
-allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, WebSearch, mcp__codex-image2__generate, mcp__codex-image2__generate_start, mcp__codex-image2__generate_status, spawn_agent, send_input
+allowed-tools: Bash(*), Read, Write, Edit, Grep, Glob, WebSearch, mcp__codex-image2__generate, mcp__codex-image2__generate_start, mcp__codex-image2__generate_status, mcp__codex__codex, mcp__codex__codex-reply
 ---
 
 # Paper Illustration Image2
@@ -68,7 +68,7 @@ and a **local Codex app-server MCP bridge** as the raster renderer.
 ## Constants
 
 - **RENDERER = `codex-image2`** — Native image generation bridge exposed through local Codex app-server
-- **OPTIONAL_TEXT_CRITIC = `spawn_agent`** — Optional text-only second opinion for layout/style checks
+- **OPTIONAL_TEXT_CRITIC = `mcp__codex__codex`** — Optional text-only second opinion for layout/style checks
 - **MAX_ITERATIONS = 5** — Maximum refinement rounds
 - **TARGET_SCORE = 9** — Minimum acceptable score (1-10)
 - **OUTPUT_DIR = `figures/ai_generated/`** — Output directory
@@ -79,23 +79,31 @@ and a **local Codex app-server MCP bridge** as the raster renderer.
   (Policy A — skill-local gate). Phase 3.2 (Arch C) moved the canonical
   implementation into `skills/paper-illustration-image2/scripts/`;
   `tools/paper_illustration_image2.py` remains as an `os.execv` shim so
-  legacy resolver layers keep working without a re-install. Resolve via the
-  Codex-side chain:
+  legacy resolver layers keep working without a re-install. Resolve via:
 
   ```bash
+  # Layer 0: self-contained (CC 1.0+ exposes $CLAUDE_SKILL_DIR).
   IMAGE2_HELPER=""
-  cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
-  if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills-codex.txt ]; then
-      ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills-codex.txt 2>/dev/null) || true
+  if [ -n "${CLAUDE_SKILL_DIR:-}" ] && [ -f "$CLAUDE_SKILL_DIR/scripts/paper_illustration_image2.py" ]; then
+    IMAGE2_HELPER="$CLAUDE_SKILL_DIR/scripts/paper_illustration_image2.py"
   fi
-  [ -f ".agents/skills/paper-illustration-image2/scripts/paper_illustration_image2.py" ] && IMAGE2_HELPER=".agents/skills/paper-illustration-image2/scripts/paper_illustration_image2.py"
-  [ -z "$IMAGE2_HELPER" ] && [ -n "${ARIS_REPO:-}" ] && [ -f "$ARIS_REPO/skills/paper-illustration-image2/scripts/paper_illustration_image2.py" ] && IMAGE2_HELPER="$ARIS_REPO/skills/paper-illustration-image2/scripts/paper_illustration_image2.py"
-  [ -z "$IMAGE2_HELPER" ] && [ -n "${ARIS_REPO:-}" ] && [ -f "$ARIS_REPO/tools/paper_illustration_image2.py" ] && IMAGE2_HELPER="$ARIS_REPO/tools/paper_illustration_image2.py"
-  [ -z "$IMAGE2_HELPER" ] && [ -f tools/paper_illustration_image2.py ] && IMAGE2_HELPER="tools/paper_illustration_image2.py"
-  [ -z "$IMAGE2_HELPER" ] && [ -f ~/.codex/skills/paper-illustration-image2/scripts/paper_illustration_image2.py ] && IMAGE2_HELPER="$HOME/.codex/skills/paper-illustration-image2/scripts/paper_illustration_image2.py"
+  # Layers 1-4: shared-runtime chain via shim at tools/paper_illustration_image2.py.
+  if [ -z "$IMAGE2_HELPER" ]; then
+    cd "$(git rev-parse --show-toplevel 2>/dev/null || pwd)" || exit 1
+    if [ -z "${ARIS_REPO:-}" ] && [ -f .aris/installed-skills.txt ]; then
+        ARIS_REPO=$(awk -F'\t' '$1=="repo_root"{print $2; exit}' .aris/installed-skills.txt 2>/dev/null) || true
+    fi
+    if [ -z "${ARIS_REPO:-}" ] && [ -f "$HOME/.aris/repo" ]; then
+        ARIS_REPO=$(cat "$HOME/.aris/repo" 2>/dev/null) || true
+    fi
+    IMAGE2_HELPER=".aris/tools/paper_illustration_image2.py"
+    [ -f "$IMAGE2_HELPER" ] || IMAGE2_HELPER="tools/paper_illustration_image2.py"
+    [ -f "$IMAGE2_HELPER" ] || { [ -n "${ARIS_REPO:-}" ] && IMAGE2_HELPER="$ARIS_REPO/tools/paper_illustration_image2.py"; }
+    [ -f "$IMAGE2_HELPER" ] || IMAGE2_HELPER=""
+  fi
   [ -z "$IMAGE2_HELPER" ] && {
-    echo "ERROR: paper_illustration_image2.py not resolved at .agents/skills/, \$ARIS_REPO/skills/, \$ARIS_REPO/tools/, tools/, or ~/.codex/skills/." >&2
-    echo "       /paper-illustration-image2 cannot proceed. Fix: rerun install_aris_codex.sh, export ARIS_REPO, or copy the canonical skill into ~/.codex/skills/." >&2
+    echo "ERROR: paper_illustration_image2.py not resolved (layer 0: \$CLAUDE_SKILL_DIR/scripts/; layers 1-4: .aris/tools/, tools/, \$ARIS_REPO/tools/, \$ARIS_REPO/tools/ via ~/.aris/repo)." >&2
+    echo "       /paper-illustration-image2 cannot proceed. Fix: rerun bash tools/install_aris.sh or smart_update.sh (refreshes ~/.aris/repo), or copy the canonical script from \$ARIS_REPO/skills/paper-illustration-image2/scripts/." >&2
     exit 1
   }
   ```
@@ -226,7 +234,7 @@ layout plan:
 - relative module prominence
 - arrow routing and likely collision points
 
-If `spawn_agent` is available, you may ask it for a short second-opinion
+If `mcp__codex__codex` is available, you may ask it for a short second-opinion
 layout critique here, but Claude should still complete this step even without
 Codex.
 
@@ -248,7 +256,7 @@ before rendering:
 - the figure will read clearly in grayscale / print
 - no glow, rainbow gradient, or slide-deck decoration slips in
 
-If `spawn_agent` is available, you may ask it for a short text-only
+If `mcp__codex__codex` is available, you may ask it for a short text-only
 style audit, but do not block on it.
 
 ## Step 4: Generate Through the Bridge

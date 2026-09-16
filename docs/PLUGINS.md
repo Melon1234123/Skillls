@@ -1,6 +1,6 @@
 # 插件技能恢复方法
 
-这些技能依赖插件或宿主工具；安装器不会把它们误计为已安装。版本是原机器盘点版本，不要求新电脑能从目录取得完全相同版本。
+当前 11 个插件的完整本机文件已包含在 `plugins/`，安装器会备存到 `skillls-runtime/plugins`。这些技能依赖插件或宿主工具；文件备存不代表原生插件注册或登录完成。版本是原机器盘点版本，不要求新电脑能从目录取得完全相同版本。
 
 ## Codex 上的操作
 
@@ -47,3 +47,7 @@ python3 install.py --agent custom --dest /actual/main/skills --superpowers-dest 
 ```
 
 不要照抄示例路径。这个选项恢复技能定义和配套文件，不注册原生插件。先确认宿主对嵌套目录和同名技能的处理；如果不支持两种版本并存，报告三个同名技能的版本冲突，由用户选择使用哪版，不盲目覆盖。本次并未验证 ZCode 的加载规则。
+
+## 其余缓存和系统技能
+
+本机其余插件缓存包（包括无 SKILL.md 的工具包、旧版、模板包）见 `manifests/skills.json` 的 `archived_plugin_packages`，实际文件位于 `archive/plugins/`；同内容别名可共用路径。系统技能完整文件位于 `system-skills/`。逐文件证据见 [完整性报告](COMPLETENESS.md)。

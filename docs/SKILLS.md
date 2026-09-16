@@ -123,47 +123,47 @@
 
 | 技能 | 插件 | 记录版本 |
 | --- | --- | --- |
-| plugin-management:plugin-management | plugin-management | 0.1.0 |
-| sites:sites-building | sites | 0.1.62 |
-| sites:sites-hosting | sites | 0.1.62 |
-| sites:sites-preview-troubleshooting | sites | 0.1.62 |
-| google-drive:google-docs | google-drive | 0.1.16 |
-| google-drive:google-drive | google-drive | 0.1.16 |
-| google-drive:google-drive-comments | google-drive | 0.1.16 |
-| google-drive:google-sheets | google-drive | 0.1.16 |
-| google-drive:google-slides | google-drive | 0.1.16 |
-| hugging-face:hf-cli | hugging-face | 1.0.0 |
-| hugging-face:huggingface-community-evals | hugging-face | 1.0.0 |
-| hugging-face:huggingface-datasets | hugging-face | 1.0.0 |
-| hugging-face:huggingface-gradio | hugging-face | 1.0.0 |
-| hugging-face:huggingface-jobs | hugging-face | 1.0.0 |
-| hugging-face:huggingface-llm-trainer | hugging-face | 1.0.0 |
-| hugging-face:huggingface-paper-publisher | hugging-face | 1.0.0 |
-| hugging-face:huggingface-papers | hugging-face | 1.0.0 |
-| hugging-face:huggingface-trackio | hugging-face | 1.0.0 |
-| hugging-face:transformers-js | hugging-face | 1.0.0 |
-| hugging-face:huggingface-vision-trainer | hugging-face | 1.0.0 |
-| superpowers:brainstorming | superpowers | 6.3.0 |
-| superpowers:dispatching-parallel-agents | superpowers | 6.3.0 |
-| superpowers:executing-plans | superpowers | 6.3.0 |
-| superpowers:finishing-a-development-branch | superpowers | 6.3.0 |
-| superpowers:receiving-code-review | superpowers | 6.3.0 |
-| superpowers:requesting-code-review | superpowers | 6.3.0 |
-| superpowers:subagent-driven-development | superpowers | 6.3.0 |
-| superpowers:systematic-debugging | superpowers | 6.3.0 |
-| superpowers:test-driven-development | superpowers | 6.3.0 |
-| superpowers:using-git-worktrees | superpowers | 6.3.0 |
-| superpowers:using-superpowers | superpowers | 6.3.0 |
-| superpowers:verification-before-completion | superpowers | 6.3.0 |
-| superpowers:writing-plans | superpowers | 6.3.0 |
-| superpowers:writing-skills | superpowers | 6.3.0 |
-| template-creator:template-creator | template-creator | 26.909.12148 |
-| spreadsheets:excel-live-control | spreadsheets | 26.909.12148 |
-| spreadsheets:Spreadsheets | spreadsheets | 26.909.12148 |
-| pdf:pdf | pdf | 26.909.12148 |
-| presentations:Presentations | presentations | 26.909.12148 |
-| documents:documents | documents | 26.909.12148 |
-| visualize:visualize | visualize | 1.0.32 |
+| [plugin-management:plugin-management](../plugins/plugin-management/skills/plugin-management/SKILL.md) | plugin-management | 0.1.0 |
+| [sites:sites-building](../plugins/sites/skills/sites-building/SKILL.md) | sites | 0.1.62 |
+| [sites:sites-hosting](../plugins/sites/skills/sites-hosting/SKILL.md) | sites | 0.1.62 |
+| [sites:sites-preview-troubleshooting](../plugins/sites/skills/sites-preview-troubleshooting/SKILL.md) | sites | 0.1.62 |
+| [google-drive:google-docs](../plugins/google-drive/skills/google-docs/SKILL.md) | google-drive | 0.1.16 |
+| [google-drive:google-drive](../plugins/google-drive/skills/google-drive/SKILL.md) | google-drive | 0.1.16 |
+| [google-drive:google-drive-comments](../plugins/google-drive/skills/google-drive-comments/SKILL.md) | google-drive | 0.1.16 |
+| [google-drive:google-sheets](../plugins/google-drive/skills/google-sheets/SKILL.md) | google-drive | 0.1.16 |
+| [google-drive:google-slides](../plugins/google-drive/skills/google-slides/SKILL.md) | google-drive | 0.1.16 |
+| [hugging-face:hf-cli](../plugins/hugging-face/skills/cli/SKILL.md) | hugging-face | 1.0.0 |
+| [hugging-face:huggingface-community-evals](../plugins/hugging-face/skills/community-evals/SKILL.md) | hugging-face | 1.0.0 |
+| [hugging-face:huggingface-datasets](../plugins/hugging-face/skills/datasets/SKILL.md) | hugging-face | 1.0.0 |
+| [hugging-face:huggingface-gradio](../plugins/hugging-face/skills/gradio/SKILL.md) | hugging-face | 1.0.0 |
+| [hugging-face:huggingface-jobs](../plugins/hugging-face/skills/jobs/SKILL.md) | hugging-face | 1.0.0 |
+| [hugging-face:huggingface-llm-trainer](../plugins/hugging-face/skills/llm-trainer/SKILL.md) | hugging-face | 1.0.0 |
+| [hugging-face:huggingface-paper-publisher](../plugins/hugging-face/skills/paper-publisher/SKILL.md) | hugging-face | 1.0.0 |
+| [hugging-face:huggingface-papers](../plugins/hugging-face/skills/papers/SKILL.md) | hugging-face | 1.0.0 |
+| [hugging-face:huggingface-trackio](../plugins/hugging-face/skills/trackio/SKILL.md) | hugging-face | 1.0.0 |
+| [hugging-face:transformers-js](../plugins/hugging-face/skills/transformers.js/SKILL.md) | hugging-face | 1.0.0 |
+| [hugging-face:huggingface-vision-trainer](../plugins/hugging-face/skills/vision-trainer/SKILL.md) | hugging-face | 1.0.0 |
+| [superpowers:brainstorming](../plugins/superpowers/skills/brainstorming/SKILL.md) | superpowers | 6.3.0 |
+| [superpowers:dispatching-parallel-agents](../plugins/superpowers/skills/dispatching-parallel-agents/SKILL.md) | superpowers | 6.3.0 |
+| [superpowers:executing-plans](../plugins/superpowers/skills/executing-plans/SKILL.md) | superpowers | 6.3.0 |
+| [superpowers:finishing-a-development-branch](../plugins/superpowers/skills/finishing-a-development-branch/SKILL.md) | superpowers | 6.3.0 |
+| [superpowers:receiving-code-review](../plugins/superpowers/skills/receiving-code-review/SKILL.md) | superpowers | 6.3.0 |
+| [superpowers:requesting-code-review](../plugins/superpowers/skills/requesting-code-review/SKILL.md) | superpowers | 6.3.0 |
+| [superpowers:subagent-driven-development](../plugins/superpowers/skills/subagent-driven-development/SKILL.md) | superpowers | 6.3.0 |
+| [superpowers:systematic-debugging](../plugins/superpowers/skills/systematic-debugging/SKILL.md) | superpowers | 6.3.0 |
+| [superpowers:test-driven-development](../plugins/superpowers/skills/test-driven-development/SKILL.md) | superpowers | 6.3.0 |
+| [superpowers:using-git-worktrees](../plugins/superpowers/skills/using-git-worktrees/SKILL.md) | superpowers | 6.3.0 |
+| [superpowers:using-superpowers](../plugins/superpowers/skills/using-superpowers/SKILL.md) | superpowers | 6.3.0 |
+| [superpowers:verification-before-completion](../plugins/superpowers/skills/verification-before-completion/SKILL.md) | superpowers | 6.3.0 |
+| [superpowers:writing-plans](../plugins/superpowers/skills/writing-plans/SKILL.md) | superpowers | 6.3.0 |
+| [superpowers:writing-skills](../plugins/superpowers/skills/writing-skills/SKILL.md) | superpowers | 6.3.0 |
+| [template-creator:template-creator](../plugins/template-creator/skills/template-creator/SKILL.md) | template-creator | 26.909.12148 |
+| [spreadsheets:excel-live-control](../plugins/spreadsheets/skills/excel-live-control/SKILL.md) | spreadsheets | 26.909.12148 |
+| [spreadsheets:Spreadsheets](../plugins/spreadsheets/skills/spreadsheets/SKILL.md) | spreadsheets | 26.909.12148 |
+| [pdf:pdf](../plugins/pdf/skills/pdf/SKILL.md) | pdf | 26.909.12148 |
+| [presentations:Presentations](../plugins/presentations/skills/presentations/SKILL.md) | presentations | 26.909.12148 |
+| [documents:documents](../plugins/documents/skills/documents/SKILL.md) | documents | 26.909.12148 |
+| [visualize:visualize](../plugins/visualize/skills/visualize/SKILL.md) | visualize | 1.0.32 |
 
 ## Codex 内置（6）
 
@@ -171,9 +171,11 @@
 
 | 技能 | 恢复方法 |
 | --- | --- |
-| imagegen | Codex 内置；其他 agent 可参考 [openai/skills](https://github.com/openai/skills)，需核对工具兼容性 |
-| openai-docs | Codex 内置；其他 agent 可参考 [openai/skills](https://github.com/openai/skills)，需核对工具兼容性 |
-| plugin-creator | Codex 内置；其他 agent 可参考 [openai/skills](https://github.com/openai/skills)，需核对工具兼容性 |
-| review-agent | Codex 内置；其他 agent 可参考 [openai/skills](https://github.com/openai/skills)，需核对工具兼容性 |
-| skill-creator | Codex 内置；其他 agent 可参考 [openai/skills](https://github.com/openai/skills)，需核对工具兼容性 |
-| skill-installer | Codex 内置；其他 agent 可参考 [openai/skills](https://github.com/openai/skills)，需核对工具兼容性 |
+| [imagegen](../system-skills/imagegen/SKILL.md) | Codex 内置；其他 agent 可参考 [openai/skills](https://github.com/openai/skills)，需核对工具兼容性 |
+| [openai-docs](../system-skills/openai-docs/SKILL.md) | Codex 内置；其他 agent 可参考 [openai/skills](https://github.com/openai/skills)，需核对工具兼容性 |
+| [plugin-creator](../system-skills/plugin-creator/SKILL.md) | Codex 内置；其他 agent 可参考 [openai/skills](https://github.com/openai/skills)，需核对工具兼容性 |
+| [review-agent](../system-skills/review-agent/SKILL.md) | Codex 内置；其他 agent 可参考 [openai/skills](https://github.com/openai/skills)，需核对工具兼容性 |
+| [skill-creator](../system-skills/skill-creator/SKILL.md) | Codex 内置；其他 agent 可参考 [openai/skills](https://github.com/openai/skills)，需核对工具兼容性 |
+| [skill-installer](../system-skills/skill-installer/SKILL.md) | Codex 内置；其他 agent 可参考 [openai/skills](https://github.com/openai/skills)，需核对工具兼容性 |
+
+本机其他版本、原始副本与未启用模板也已完整归档，详见 [完整性报告](COMPLETENESS.md)。上述数字仅统计当前技能清单，避免把不同版本重复算成新增能力。

@@ -1,0 +1,5 @@
+[block, review]
+/ @openai/codex-cloud
+
+[tempest::evaluate-only]
+/

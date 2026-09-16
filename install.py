@@ -18,7 +18,7 @@ def digest(path):
 
 def verify_bundle():
     expected = json.loads((ROOT / 'manifests/checksums.json').read_text(encoding='utf-8'))
-    actual = {str(p.relative_to(ROOT)).replace(os.sep, '/') for folder in ('skills', 'runtime', 'plugins') for p in (ROOT / folder).rglob('*') if p.is_file()}
+    actual = {str(p.relative_to(ROOT)).replace(os.sep, '/') for folder in ('skills', 'runtime', 'plugins', 'archive', 'system-skills') for p in (ROOT / folder).rglob('*') if p.is_file()}
     if actual != set(expected):
         raise ValueError('Bundle file list differs from manifest')
     for rel, sha in expected.items():
@@ -87,12 +87,15 @@ def main():
         install_tree(source, dest / source.name, args, actions)
     runtime = dest.parent / 'skillls-runtime/aris'
     install_tree(ROOT / 'runtime/aris', runtime, args, actions)
+    package_root = dest.parent / 'skillls-runtime'
+    for folder in ('plugins', 'system-skills'):
+        install_tree(ROOT / folder, package_root / folder, args, actions)
     if args.superpowers_dest:
         for source in sorted((ROOT / 'plugins/superpowers/skills').iterdir()):
             if source.is_dir():
                 install_tree(source, sp_dest / source.name, args, actions)
     conflicts = [a for a in actions if a['status'] == 'conflict-kept']
-    report = {'dry_run': args.dry_run, 'destination': str(dest), 'snapshot_skill_count': sum(e['installation'] == 'snapshot' for e in manifest['skills']), 'actions': actions, 'pending_plugins': manifest['plugins'], 'builtin_skills': [e['name'] for e in manifest['skills'] if e['installation'] == 'builtin'], 'superpowers_definitions_destination': str(args.superpowers_dest.expanduser().resolve()) if args.superpowers_dest else None, 'superpowers_native_plugin_registration': 'not performed', 'runtime_environment': {'ARIS_REPO': str(runtime)}, 'status': 'conflicts' if conflicts else ('planned' if args.dry_run else 'skill-files-installed; plugin-and-runtime-setup-pending')}
+    report = {'dry_run': args.dry_run, 'destination': str(dest), 'snapshot_skill_count': sum(e['installation'] == 'snapshot' for e in manifest['skills']), 'actions': actions, 'staged_plugin_packages': str(package_root / 'plugins'), 'staged_system_skills': str(package_root / 'system-skills'), 'pending_plugins': manifest['plugins'], 'builtin_skills': [e['name'] for e in manifest['skills'] if e['installation'] == 'builtin'], 'superpowers_definitions_destination': str(args.superpowers_dest.expanduser().resolve()) if args.superpowers_dest else None, 'superpowers_native_plugin_registration': 'not performed', 'runtime_environment': {'ARIS_REPO': str(runtime)}, 'status': 'conflicts' if conflicts else ('planned' if args.dry_run else 'skill-files-installed; plugin-and-runtime-setup-pending')}
     if args.report:
         args.report.parent.mkdir(parents=True, exist_ok=True)
         args.report.write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
