@@ -1032,7 +1032,8 @@
       "installation": "plugin",
       "plugin": "superpowers",
       "version": "6.3.0",
-      "path": "skills/brainstorming/SKILL.md"
+      "path": "skills/brainstorming/SKILL.md",
+      "bundled_path": "plugins/superpowers/skills/brainstorming/SKILL.md"
     },
     {
       "id": "superpowers:dispatching-parallel-agents",
@@ -1040,7 +1041,8 @@
       "installation": "plugin",
       "plugin": "superpowers",
       "version": "6.3.0",
-      "path": "skills/dispatching-parallel-agents/SKILL.md"
+      "path": "skills/dispatching-parallel-agents/SKILL.md",
+      "bundled_path": "plugins/superpowers/skills/dispatching-parallel-agents/SKILL.md"
     },
     {
       "id": "superpowers:executing-plans",
@@ -1048,7 +1050,8 @@
       "installation": "plugin",
       "plugin": "superpowers",
       "version": "6.3.0",
-      "path": "skills/executing-plans/SKILL.md"
+      "path": "skills/executing-plans/SKILL.md",
+      "bundled_path": "plugins/superpowers/skills/executing-plans/SKILL.md"
     },
     {
       "id": "superpowers:finishing-a-development-branch",
@@ -1056,7 +1059,8 @@
       "installation": "plugin",
       "plugin": "superpowers",
       "version": "6.3.0",
-      "path": "skills/finishing-a-development-branch/SKILL.md"
+      "path": "skills/finishing-a-development-branch/SKILL.md",
+      "bundled_path": "plugins/superpowers/skills/finishing-a-development-branch/SKILL.md"
     },
     {
       "id": "superpowers:receiving-code-review",
@@ -1064,7 +1068,8 @@
       "installation": "plugin",
       "plugin": "superpowers",
       "version": "6.3.0",
-      "path": "skills/receiving-code-review/SKILL.md"
+      "path": "skills/receiving-code-review/SKILL.md",
+      "bundled_path": "plugins/superpowers/skills/receiving-code-review/SKILL.md"
     },
     {
       "id": "superpowers:requesting-code-review",
@@ -1072,7 +1077,8 @@
       "installation": "plugin",
       "plugin": "superpowers",
       "version": "6.3.0",
-      "path": "skills/requesting-code-review/SKILL.md"
+      "path": "skills/requesting-code-review/SKILL.md",
+      "bundled_path": "plugins/superpowers/skills/requesting-code-review/SKILL.md"
     },
     {
       "id": "superpowers:subagent-driven-development",
@@ -1080,7 +1086,8 @@
       "installation": "plugin",
       "plugin": "superpowers",
       "version": "6.3.0",
-      "path": "skills/subagent-driven-development/SKILL.md"
+      "path": "skills/subagent-driven-development/SKILL.md",
+      "bundled_path": "plugins/superpowers/skills/subagent-driven-development/SKILL.md"
     },
     {
       "id": "superpowers:systematic-debugging",
@@ -1088,7 +1095,8 @@
       "installation": "plugin",
       "plugin": "superpowers",
       "version": "6.3.0",
-      "path": "skills/systematic-debugging/SKILL.md"
+      "path": "skills/systematic-debugging/SKILL.md",
+      "bundled_path": "plugins/superpowers/skills/systematic-debugging/SKILL.md"
     },
     {
       "id": "superpowers:test-driven-development",
@@ -1096,7 +1104,8 @@
       "installation": "plugin",
       "plugin": "superpowers",
       "version": "6.3.0",
-      "path": "skills/test-driven-development/SKILL.md"
+      "path": "skills/test-driven-development/SKILL.md",
+      "bundled_path": "plugins/superpowers/skills/test-driven-development/SKILL.md"
     },
     {
       "id": "superpowers:using-git-worktrees",
@@ -1104,7 +1113,8 @@
       "installation": "plugin",
       "plugin": "superpowers",
       "version": "6.3.0",
-      "path": "skills/using-git-worktrees/SKILL.md"
+      "path": "skills/using-git-worktrees/SKILL.md",
+      "bundled_path": "plugins/superpowers/skills/using-git-worktrees/SKILL.md"
     },
     {
       "id": "superpowers:using-superpowers",
@@ -1112,7 +1122,8 @@
       "installation": "plugin",
       "plugin": "superpowers",
       "version": "6.3.0",
-      "path": "skills/using-superpowers/SKILL.md"
+      "path": "skills/using-superpowers/SKILL.md",
+      "bundled_path": "plugins/superpowers/skills/using-superpowers/SKILL.md"
     },
     {
       "id": "superpowers:verification-before-completion",
@@ -1120,7 +1131,8 @@
       "installation": "plugin",
       "plugin": "superpowers",
       "version": "6.3.0",
-      "path": "skills/verification-before-completion/SKILL.md"
+      "path": "skills/verification-before-completion/SKILL.md",
+      "bundled_path": "plugins/superpowers/skills/verification-before-completion/SKILL.md"
     },
     {
       "id": "superpowers:writing-plans",
@@ -1128,7 +1140,8 @@
       "installation": "plugin",
       "plugin": "superpowers",
       "version": "6.3.0",
-      "path": "skills/writing-plans/SKILL.md"
+      "path": "skills/writing-plans/SKILL.md",
+      "bundled_path": "plugins/superpowers/skills/writing-plans/SKILL.md"
     },
     {
       "id": "superpowers:writing-skills",
@@ -1136,7 +1149,8 @@
       "installation": "plugin",
       "plugin": "superpowers",
       "version": "6.3.0",
-      "path": "skills/writing-skills/SKILL.md"
+      "path": "skills/writing-skills/SKILL.md",
+      "bundled_path": "plugins/superpowers/skills/writing-skills/SKILL.md"
     },
     {
       "id": "template-creator:template-creator",
@@ -1309,7 +1323,8 @@
       ],
       "marketplace": "openai-curated-remote",
       "upstream": "https://github.com/obra/superpowers",
-      "install": "Install or enable this plugin through the target Codex plugin catalog; authenticate its connector if requested. Host-managed runtime plugins require a compatible Codex application."
+      "install": "Complete 6.3.0 plugin snapshot is bundled. Enable through the host plugin mechanism; for skill-directory-only agents use install.py --superpowers-dest with an isolated, actually scanned directory.",
+      "bundled_path": "plugins/superpowers"
     },
     {
       "name": "template-creator",

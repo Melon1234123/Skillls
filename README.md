@@ -19,6 +19,10 @@
 
 **边界：技能文件安装成功不等于云端工具、登录、GPU、LaTeX 或 API 已可用。** Codex 专属文档/表格/演示文稿/可视化能力由宿主提供，其他 agent 可能没有等价实现。安装器会明确报告待恢复插件；不会伪造“全部能力可用”。
 
+## Superpowers 完整包
+
+[plugins/superpowers](plugins/superpowers) 已包含本机 6.3.0 的 **14 个子技能**、配套文件、插件元数据与 MIT 许可证。它与 `skills/` 下的三个本地独立版本分别保存。见 [完整恢复方式](docs/PLUGINS.md#superpowers-完整快照)。总数仍为 155；这 14 项原已计入插件清单。
+
 ## 一条命令安装
 
 需要 Git 和 Python 3.9+。安装器只使用 Python 标准库；下载仓库后安装过程可离线运行。

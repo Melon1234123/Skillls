@@ -18,7 +18,7 @@ def digest(path):
 
 def verify_bundle():
     expected = json.loads((ROOT / 'manifests/checksums.json').read_text(encoding='utf-8'))
-    actual = {str(p.relative_to(ROOT)).replace(os.sep, '/') for folder in ('skills', 'runtime') for p in (ROOT / folder).rglob('*') if p.is_file()}
+    actual = {str(p.relative_to(ROOT)).replace(os.sep, '/') for folder in ('skills', 'runtime', 'plugins') for p in (ROOT / folder).rglob('*') if p.is_file()}
     if actual != set(expected):
         raise ValueError('Bundle file list differs from manifest')
     for rel, sha in expected.items():
@@ -61,6 +61,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--agent', choices=['codex', 'claude', 'agents', 'custom'], default='codex')
     parser.add_argument('--dest', type=Path, help='Explicit skills discovery directory (required for custom/ZCode)')
+    parser.add_argument('--superpowers-dest', type=Path, help='Optional isolated, host-scanned skills directory for all 14 Superpowers definitions; not native plugin registration')
     parser.add_argument('--dry-run', action='store_true')
     parser.add_argument('--replace', action='store_true', help='Back up differing existing folders before replacing')
     parser.add_argument('--verify-only', action='store_true')
@@ -77,13 +78,21 @@ def main():
     dest = (args.dest or defaults[args.agent]).expanduser().resolve()
     if dest == ROOT or ROOT in dest.parents or dest in ROOT.parents:
         parser.error('Destination must be outside this repository and must not contain it')
+    if args.superpowers_dest:
+        sp_dest = args.superpowers_dest.expanduser().resolve()
+        if sp_dest == ROOT or ROOT in sp_dest.parents or sp_dest in ROOT.parents or sp_dest == dest or sp_dest in dest.parents:
+            parser.error('--superpowers-dest must be an isolated directory outside the repository and not the main skills directory')
     actions = []
     for source in sorted((ROOT / 'skills').iterdir()):
         install_tree(source, dest / source.name, args, actions)
     runtime = dest.parent / 'skillls-runtime/aris'
     install_tree(ROOT / 'runtime/aris', runtime, args, actions)
+    if args.superpowers_dest:
+        for source in sorted((ROOT / 'plugins/superpowers/skills').iterdir()):
+            if source.is_dir():
+                install_tree(source, sp_dest / source.name, args, actions)
     conflicts = [a for a in actions if a['status'] == 'conflict-kept']
-    report = {'dry_run': args.dry_run, 'destination': str(dest), 'snapshot_skill_count': sum(e['installation'] == 'snapshot' for e in manifest['skills']), 'actions': actions, 'pending_plugins': manifest['plugins'], 'builtin_skills': [e['name'] for e in manifest['skills'] if e['installation'] == 'builtin'], 'runtime_environment': {'ARIS_REPO': str(runtime)}, 'status': 'conflicts' if conflicts else ('planned' if args.dry_run else 'skill-files-installed; plugin-and-runtime-setup-pending')}
+    report = {'dry_run': args.dry_run, 'destination': str(dest), 'snapshot_skill_count': sum(e['installation'] == 'snapshot' for e in manifest['skills']), 'actions': actions, 'pending_plugins': manifest['plugins'], 'builtin_skills': [e['name'] for e in manifest['skills'] if e['installation'] == 'builtin'], 'superpowers_definitions_destination': str(args.superpowers_dest.expanduser().resolve()) if args.superpowers_dest else None, 'superpowers_native_plugin_registration': 'not performed', 'runtime_environment': {'ARIS_REPO': str(runtime)}, 'status': 'conflicts' if conflicts else ('planned' if args.dry_run else 'skill-files-installed; plugin-and-runtime-setup-pending')}
     if args.report:
         args.report.parent.mkdir(parents=True, exist_ok=True)
         args.report.write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')

@@ -33,3 +33,17 @@
 - **documents、spreadsheets、presentations、pdf、template-creator、visualize**：原版本含 Codex runtime 耦合。其他 agent 需要自行配置适用的文档处理工具，不能宣称与 Codex 专属能力完全等价。
 
 机器可读包名、技能列表和盘点版本见 [skills.json](../manifests/skills.json)。
+
+## Superpowers 完整快照
+
+完整包见 [plugins/superpowers](../plugins/superpowers)。14 个子技能实际文件均已包含，清单中的 `bundled_path` 可逐项定位。原有三个本地独立版本（brainstorming、writing-plans、subagent-driven-development）保持独立；两种版本可能不同。
+
+Codex 优先通过原生插件机制恢复，保留 `superpowers:` 命名空间。若目标宿主支持从本地插件目录注册，使用完整包；否则从其插件目录安装。文件存在不能代替插件启用验证。
+
+仅支持技能目录的 agent，可将完整 14 个子技能复制到一个**独立、且已确认会被宿主扫描的目录**：
+
+```bash
+python3 install.py --agent custom --dest /actual/main/skills --superpowers-dest /actual/isolated/superpowers/skills
+```
+
+不要照抄示例路径。这个选项恢复技能定义和配套文件，不注册原生插件。先确认宿主对嵌套目录和同名技能的处理；如果不支持两种版本并存，报告三个同名技能的版本冲突，由用户选择使用哪版，不盲目覆盖。本次并未验证 ZCode 的加载规则。

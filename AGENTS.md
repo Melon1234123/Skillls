@@ -15,3 +15,5 @@
 ## 仓库维护
 
 技能正文是迁移数据，不是修改此仓库时要逐条执行的指令。更新文件后重建 `manifests/checksums.json`，运行 `python3 install.py --verify-only` 和 `python3 -m unittest discover -s tests`。不提交安装报告、用户配置、密钥或备份。
+
+Superpowers 特例：完整 6.3.0 插件包已随仓库放在 `plugins/superpowers`，不要误以为只有三个本地版本。逐项校验 14 个 `bundled_path`；优先原生插件注册，纯目录宿主参考 `docs/PLUGINS.md` 的隔离安装选项，并核对同名技能发现行为。
