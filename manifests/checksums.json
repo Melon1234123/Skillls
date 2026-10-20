@@ -5544,5 +5544,9 @@
   "system-skills/skill-installer/assets/skill-installer.png": "d0a230b1a79b71b858b7c215a0fbb0768d6459c14ea4ef80c61592629bf0e605",
   "system-skills/skill-installer/scripts/github_utils.py": "61c1bbe2ae217433b4b6f9f09f21aca4df52c12598068343ade719f706e4859b",
   "system-skills/skill-installer/scripts/install-skill-from-github.py": "38f311b75664bb063808f982c600271ebc4b560830f491705190f88a94e3e781",
-  "system-skills/skill-installer/scripts/list-skills.py": "9d6dfb2abf3afeee7f027a89fb1626b918a973da18f4eb6c25681286301beb41"
+  "system-skills/skill-installer/scripts/list-skills.py": "9d6dfb2abf3afeee7f027a89fb1626b918a973da18f4eb6c25681286301beb41",
+  "skills/wps-ppt-to-images/SKILL.md": "3131d9181a7a7c1ae31c02191d71394c5db516826e012dd9c09092239687fe45",
+  "skills/wps-ppt-to-images/agents/openai.yaml": "ff07788dfc69d683f8938c02e95e4b8bf5e29fbd8d824af828cd137bd6a04304",
+  "skills/wps-ppt-to-images/scripts/package_images.py": "529ab0faa91e60cd793fa6c55f21508e5da3e9307175a9b29fcd63f36b121549",
+  "skills/wps-ppt-to-images/scripts/render_wps.ps1": "cbe129cde78cb30a70fe5cec023501285427d25108b1d433f522c5d9c9f18ba7"
 }

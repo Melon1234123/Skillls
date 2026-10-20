@@ -1276,6 +1276,14 @@
       "installation": "builtin",
       "install": "Provided by Codex; update Codex. For other agents, consult openai/skills and host compatibility.",
       "bundled_path": "system-skills/skill-installer/SKILL.md"
+    },
+    {
+      "id": "wps-ppt-to-images",
+      "name": "wps-ppt-to-images",
+      "path": "skills/wps-ppt-to-images/SKILL.md",
+      "installation": "snapshot",
+      "origin": "local skill; added 2026-10-20",
+      "upstream": "https://github.com/Melon1234123/wps-ppt-to-images"
     }
   ],
   "plugins": [
