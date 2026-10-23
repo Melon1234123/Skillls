@@ -1284,6 +1284,14 @@
       "installation": "snapshot",
       "origin": "local skill; added 2026-10-20",
       "upstream": "https://github.com/Melon1234123/wps-ppt-to-images"
+    },
+    {
+      "id": "rough-handwriting-notes",
+      "name": "rough-handwriting-notes",
+      "path": "skills/rough-handwriting-notes/SKILL.md",
+      "installation": "snapshot",
+      "origin": "local skill; added 2026-10-23",
+      "upstream": "https://github.com/Melon1234123/rough-handwriting-notes"
     }
   ],
   "plugins": [

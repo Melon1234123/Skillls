@@ -5548,5 +5548,9 @@
   "skills/wps-ppt-to-images/SKILL.md": "3131d9181a7a7c1ae31c02191d71394c5db516826e012dd9c09092239687fe45",
   "skills/wps-ppt-to-images/agents/openai.yaml": "ff07788dfc69d683f8938c02e95e4b8bf5e29fbd8d824af828cd137bd6a04304",
   "skills/wps-ppt-to-images/scripts/package_images.py": "529ab0faa91e60cd793fa6c55f21508e5da3e9307175a9b29fcd63f36b121549",
-  "skills/wps-ppt-to-images/scripts/render_wps.ps1": "cbe129cde78cb30a70fe5cec023501285427d25108b1d433f522c5d9c9f18ba7"
+  "skills/wps-ppt-to-images/scripts/render_wps.ps1": "cbe129cde78cb30a70fe5cec023501285427d25108b1d433f522c5d9c9f18ba7",
+  "skills/rough-handwriting-notes/SKILL.md": "a6c4789fcf926ce5e80c9f133e74242afd3afddc0c07ee1c33a4b39dea49d27a",
+  "skills/rough-handwriting-notes/agents/openai.yaml": "46b04066fcf18e4b447446ad48398b1f4ca3068c31c08da531a04b58c7e055f5",
+  "skills/rough-handwriting-notes/references/content-check.md": "ad536c68470da33a6589486bd3e5b2379a9b041f2ac8366fc11a27a936751b3f",
+  "skills/rough-handwriting-notes/references/prompts.md": "12a630fb98134f83394686e97c81682fe031e135f7a852ea02e3d295ef47d4d3"
 }

@@ -27735,6 +27735,26 @@
       "source": "plugin-cache/openai-curated-remote/superpowers/.codex-remote-plugin-install.json",
       "path": "archive/plugin-install-metadata/openai-curated-remote/superpowers/.codex-remote-plugin-install.json",
       "sha256": "c36744fde190a9cac857960c047d12cb7ad9e3ce79cb9d6a8de58c5fc38d53f6"
+    },
+    {
+      "source": "codex-skills/rough-handwriting-notes/SKILL.md",
+      "path": "skills/rough-handwriting-notes/SKILL.md",
+      "sha256": "a6c4789fcf926ce5e80c9f133e74242afd3afddc0c07ee1c33a4b39dea49d27a"
+    },
+    {
+      "source": "codex-skills/rough-handwriting-notes/agents/openai.yaml",
+      "path": "skills/rough-handwriting-notes/agents/openai.yaml",
+      "sha256": "46b04066fcf18e4b447446ad48398b1f4ca3068c31c08da531a04b58c7e055f5"
+    },
+    {
+      "source": "codex-skills/rough-handwriting-notes/references/content-check.md",
+      "path": "skills/rough-handwriting-notes/references/content-check.md",
+      "sha256": "ad536c68470da33a6589486bd3e5b2379a9b041f2ac8366fc11a27a936751b3f"
+    },
+    {
+      "source": "codex-skills/rough-handwriting-notes/references/prompts.md",
+      "path": "skills/rough-handwriting-notes/references/prompts.md",
+      "sha256": "12a630fb98134f83394686e97c81682fe031e135f7a852ea02e3d295ef47d4d3"
     }
   ],
   "exclusions": [
