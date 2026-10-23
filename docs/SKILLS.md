@@ -2,14 +2,15 @@
 
 2026-09-16 本机盘点：108 个快照入口、41 个插件入口、6 个系统入口。
 
-2026-10-20 新增 WPS PPT转图片版，当前为109个快照入口，共156个技能入口。
+2026-10-20 新增 WPS PPT转图片版，2026-10-23 再增黑底白字手写技能，当前为110个快照入口，共157个技能入口。
 
-## 本仓库安装（109）
+## 本仓库安装（110）
 
 所有这些条目由 `python3 install.py --agent codex` 安装；其他 agent 更换参数。来源未知不影响快照恢复，但不把推测来源写成已证实来源。
 
 | 技能 | 文件 | 来源 |
 | --- | --- | --- |
+| rough-handwriting-notes | [黑底白字 · 笨拙手写](../skills/rough-handwriting-notes/SKILL.md) | [独立仓库](https://github.com/Melon1234123/rough-handwriting-notes)；2026-10-23 新增 |
 | wps-ppt-to-images | [WPS PPT转图片版](../skills/wps-ppt-to-images/SKILL.md) | [独立仓库](https://github.com/Melon1234123/wps-ppt-to-images)；2026-10-20新增 |
 | ablation-planner | [ablation-planner](../skills/ablation-planner/SKILL.md) | [上游](https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep)；本机快照 |
 | Academic Figure Prompt | [academic-figure-prompt](../skills/academic-figure-prompt/SKILL.md) | 本机快照；独立上游未确认 |

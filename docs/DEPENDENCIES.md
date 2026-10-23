@@ -46,3 +46,7 @@ git checkout c5f3d5bfc694a812012729841e9697223e4f2130
 ## WPS PPT转图片版（2026-10-20新增）
 
 `wps-ppt-to-images`要求Windows和支持`KWPP.Application`的WPS演示，以及Python 3、Pillow、lxml。技能文件迁移不代表目标电脑已安装WPS或注册COM。普通页会变为静态图片，媒体页完整保留。
+
+## 黑底白字 · 笨拙手写（2026-10-23 新增）
+
+需要宿主提供图片编辑能力，Codex 优先使用内置 imagegen。技能本身不含执行脚本，不要求额外 Python 依赖；安装文件不代表目标宿主具有图片编辑工具，也不自动配置付费 API。
